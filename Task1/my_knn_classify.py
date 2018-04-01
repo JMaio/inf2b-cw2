@@ -24,22 +24,19 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
+    # set shape of prediction matrix
+    Cpreds = np.empty((0, Xtst.shape[0]), dtype=np.int_)
 
-    Cpreds = np.empty((0, Xtst.shape[0]), dtype=np.int_)   # set shape of prediction matrix
+    # get minimum value indices as columns
+    d = np.argsort(my_sq_dist(Xtrn, Xtst).T, axis=1, kind='quicksort').T
 
-    d = np.argsort(my_sq_dist(Xtrn, Xtst).T, axis=1, kind='quicksort').T     # get minimum value indices as columns
-
+    # foreach in Ks, calculate k nearest neighbour classification
     for (i, k) in enumerate(Ks):
-        inds = d[:k]      # grab k nearest from columns
-
+        # grab k nearest from columns
+        inds = d[:k]
+        # calculate most likely class from mode of closest k
         preds = stats.mode(Ctrn[inds].reshape(k, Xtst.shape[0]))[0]
-
-#              \         /                   \
-#              /         \                   /
-#      grab letter    transpose      transpose the result,
-#      number from    and shed       reshape to allow for
-#    closest vector    a layer     concatenation with output
-
+        # concatenate to output
         Cpreds = np.concatenate((Cpreds[:i], preds, Cpreds[i:]))
 
     return Cpreds
