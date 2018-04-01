@@ -14,10 +14,12 @@ except Exception:
     data = scipy.io.loadmat("../data.mat")
     print("loaded data from local")
 
+
 # Feature vectors: Convert uint8 to double, and divide by 255.
 Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
 Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
 # Labels : convert float64 to integer, and subtract 1 so that class number starts at 0 rather than 1.
+
 Ctrn = data['dataset']['train'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 Ctst = data['dataset']['test'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 
@@ -42,5 +44,4 @@ for (k, pred) in zip(kb, Cpreds):
     # YourCode - Save each confusion matrix.
     scipy.io.savemat("cm%d.mat" % k, {'cm': CM})
     # YourCode - Display the required information - k, N, Nerrs, acc for each element of kb
-
 

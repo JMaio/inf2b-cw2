@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import stats
+
 from collections import Counter
 import time
 
@@ -22,6 +23,7 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     #   Ks   : List of the numbers of nearest neighbours in Xtrn
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
+
 
     Cpreds = np.empty((0, Xtst.shape[0]), dtype=np.int_)   # set shape of prediction matrix
 
