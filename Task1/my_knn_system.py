@@ -36,8 +36,11 @@ print Cpreds
 # Measure the user time taken, and display it.
 print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
-#YourCode - Get confusion matrix and accuracy for each k in kb.
+for (k, pred) in zip(kb, Cpreds):
+    # YourCode - Get confusion matrix and accuracy for each k in kb.
+    CM, acc = my_confusion(Ctst, pred)
+    # YourCode - Save each confusion matrix.
+    scipy.io.savemat("cm%d.mat" % k, {'cm': CM})
+    # YourCode - Display the required information - k, N, Nerrs, acc for each element of kb
 
-#YourCode - Save each confusion matrix.
 
-#YourCode - Display the required information - k, N, Nerrs, acc for each element of kb
