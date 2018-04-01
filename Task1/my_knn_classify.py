@@ -1,11 +1,6 @@
-
-# coding: utf-8
-
-# # Task 1 – K-NN classification
-
-# ## Task 1.1
-
 import numpy as np
+from scipy import stats
+
 from collections import Counter
 import time
 
@@ -29,20 +24,16 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
-    Cpreds = np.empty((0, Xtst.shape[0]))   # set shape of prediction matrix
 
-    t = time.clock()    # start sort timer
+    Cpreds = np.empty((0, Xtst.shape[0]), dtype=np.int_)   # set shape of prediction matrix
 
     d = np.argsort(my_sq_dist(Xtrn, Xtst).T, axis=1, kind='quicksort').T     # get minimum value indices as columns
-    print("sort took " + str(time.clock() - t))
 
     for (i, k) in enumerate(Ks):
         inds = d[:k]      # grab k nearest from columns
 
-        preds = np.apply_along_axis(    # apply counting function along each row
-            lambda x: max(Counter(x)),  # get most likely classification from possibilities
-            1,
-            Ctrn[inds].T[0]).T.reshape(1, Xtst.shape[0])
+        preds = stats.mode(Ctrn[inds].reshape(k, Xtst.shape[0]))[0]
+
 #              \         /                   \
 #              /         \                   /
 #      grab letter    transpose      transpose the result,
