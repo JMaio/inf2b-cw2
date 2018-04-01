@@ -21,13 +21,20 @@ Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 2
 Ctrn = data['dataset']['train'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 Ctst = data['dataset']['test'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 
-#YourCode - Prepare measuring time
+#Prepare measuring time
+print("starting timer...")
+t0 = time.clock()
 
 # Run K-NN classification
-kb = [1,3,5,10,20];
+kb = [1, 3, 5, 10, 20]
+
+print("running my_knn_classify...")
 Cpreds = my_knn_classify(Xtrn, Ctrn, Xtst, kb)
 
-#YourCode - Measure the user time taken, and display it.
+print Cpreds
+
+# Measure the user time taken, and display it.
+print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
 #YourCode - Get confusion matrix and accuracy for each k in kb.
 
