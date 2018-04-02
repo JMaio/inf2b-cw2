@@ -1,8 +1,6 @@
 import numpy as np
 import scipy
 from scipy import stats
-
-from collections import Counter
 import time
 
 
