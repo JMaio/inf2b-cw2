@@ -16,8 +16,6 @@ def my_sq_dist(Xtrn, Xtst):
     m = np.sum(np.square(Xtrn), axis=1)[:, np.newaxis] + np.sum(np.square(Xtst), axis=1) - 2 * np.dot(Xtrn, Xtst.T)
     print("dists: %.3fs" % (time.clock() - t))
     return m
-    return np.sum(np.square(Xtrn), axis=1)[:, np.newaxis] + np.sum(np.square(Xtst), axis=1) - 2 * np.dot(Xtrn, Xtst.T)
-
 
 
 def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
