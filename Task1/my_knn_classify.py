@@ -13,11 +13,11 @@ def my_sq_dist(Xtrn, Xtst):
 
     # return scipy.spatial.distance.cdist (Xtst, Xtrn, metric='sqeuclidean')
     t = time.clock()
-    m = np.sum(np.square(Xtrn), axis=1)[:, np.newaxis] + np.sum(np.square(Xtst), axis=1) - 2 * np.dot(Xtrn, Xtst.T)
+    m = np.sum(Xtst**2, axis=1)[:, np.newaxis] \
+      + np.sum(Xtrn**2, axis=1) \
+      - 2 * np.dot(Xtst, Xtrn.T)
     print("dists: %.3fs" % (time.clock() - t))
     return m
-    return np.sum(np.square(Xtrn), axis=1)[:, np.newaxis] + np.sum(np.square(Xtst), axis=1) - 2 * np.dot(Xtrn, Xtst.T)
-
 
 
 def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
@@ -36,13 +36,13 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     d = my_sq_dist(Xtrn, Xtst)
     t = time.clock()
     # d = np.argpartition(d, max(Ks), axis=0)
-    d = np.argsort(d.T, axis=1, kind='quicksort').T
+    d = np.argsort(d, kind='quicksort')
     print("sort: %.2fs" % (time.clock() - t))
 
     # foreach in Ks, calculate k nearest neighbour classification
     for (i, k) in enumerate(Ks):
         # grab k nearest from columns
-        inds = d[:k]
+        inds = d[:,:k].T
         # calculate most likely class from mode of closest k
         preds = stats.mode(Ctrn[inds].reshape(k, Xtst.shape[0]))[0]
         # concatenate to output
