@@ -1,4 +1,5 @@
 import numpy as np
+import scipy
 from scipy import stats
 
 from collections import Counter
@@ -12,7 +13,13 @@ def my_sq_dist(Xtrn, Xtst):
     #     Xtst^2 = np.sum(Xtst ** 2, axis=1)                # lengths of all test vectors
     #     Xtrn * Xtst = np.dot(Xtrn, Xtst.T)                # matrix product of sums of products
 
+    # return scipy.spatial.distance.cdist (Xtst, Xtrn, metric='sqeuclidean')
+    t = time.clock()
+    m = np.sum(np.square(Xtrn), axis=1)[:, np.newaxis] + np.sum(np.square(Xtst), axis=1) - 2 * np.dot(Xtrn, Xtst.T)
+    print("dists: %.3fs" % (time.clock() - t))
+    return m
     return np.sum(np.square(Xtrn), axis=1)[:, np.newaxis] + np.sum(np.square(Xtst), axis=1) - 2 * np.dot(Xtrn, Xtst.T)
+
 
 
 def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
@@ -28,7 +35,11 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     Cpreds = np.empty((0, Xtst.shape[0]), dtype=np.int_)
 
     # get minimum value indices as columns
-    d = np.argsort(my_sq_dist(Xtrn, Xtst).T, axis=1, kind='quicksort').T
+    d = my_sq_dist(Xtrn, Xtst)
+    t = time.clock()
+    # d = np.argpartition(d, max(Ks), axis=0)
+    d = np.argsort(d.T, axis=1, kind='quicksort').T
+    print("sort: %.2fs" % (time.clock() - t))
 
     # foreach in Ks, calculate k nearest neighbour classification
     for (i, k) in enumerate(Ks):
