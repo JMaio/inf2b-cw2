@@ -9,7 +9,6 @@
 
 import numpy as np
 
-
 def my_confusion(Ctrues, Cpreds):
     # Input:
     #   Ctrues : N-by-1 ndarray of ground truth label vector (dtype=np.int_)
@@ -19,13 +18,18 @@ def my_confusion(Ctrues, Cpreds):
     #           class that was classified as j (dtype=np.int_)
     #   acc : accuracy (i.e. correct classification rate) (type=float)
     #
-
+    # create initial matrix
     CM = np.zeros((26, 26))
 
+    # iterate over tuples of (prediction, ground truth)
     for (pred, act) in zip(Cpreds, Ctrues):
+        # add 1 to (row,column) specified by (prediction, ground truth)
         CM[pred][act] += 1
 
+    # calculate number of correct predictions by going over diagonal,
+    # (where prediction == ground truth )
     correct = float(np.sum(np.diag(CM)))
+    # calculate accuracy based on correct divided by total
     acc = correct / Cpreds.shape[0]
 
     return (CM, acc)
