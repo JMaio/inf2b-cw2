@@ -5,9 +5,14 @@ import numpy as np
 import scipy.io
 
 # Load the data set
-#   NB: replace <UUN> with your actual UUN.
-filename = "/afs/inf.ed.ac.uk/group/teaching/inf2b/cwk2/d/<UUN>/data.mat";
-data = scipy.io.loadmat(filename);
+filename = "/afs/inf.ed.ac.uk/group/teaching/inf2b/cwk2/d/s1621503/data.mat"
+# use local data set while not connected to afs
+try:
+    data = scipy.io.loadmat(filename)
+    print("loaded data from afs")
+except Exception:
+    data = scipy.io.loadmat("../data.mat")
+    print("loaded data from local")
 
 # Feature vectors: Convert uint8 to double   (but do not divide by 255)
 Xtrn = data['dataset']['train'][0,0]['images'][0,0].astype(dtype=np.float_)
