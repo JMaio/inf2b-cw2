@@ -9,7 +9,10 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
-    #YourCode - binarisation of Xtrn and Xtst.
+    #binarisation of Xtrn and Xtst.
+    Xtrn_b = np.empty(Xtrn.shape, dtype=np.int8)
+    Xtrn_b[Xtrn <= threshold] = 0
+    Xtrn_b[Xtrn > threshold] = 1
 
     #YourCode - naive Bayes classification with multivariate Bernoulli distributions
 
