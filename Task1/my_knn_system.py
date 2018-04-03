@@ -23,13 +23,13 @@ Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float32) / 
 Ctrn = data['dataset']['train'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 Ctst = data['dataset']['test'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 
-#P repare measuring time
+kb = [1, 3, 5, 10, 20]
+
+# Prepare measuring time
 print("starting timer...")
 t0 = time.clock()
 
 # Run K-NN classification
-kb = [1, 3, 5, 10, 20]
-
 print("running my_knn_classify...")
 Cpreds = my_knn_classify(Xtrn, Ctrn, Xtst, kb)
 
@@ -37,11 +37,11 @@ Cpreds = my_knn_classify(Xtrn, Ctrn, Xtst, kb)
 print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
 for (k, pred) in zip(kb, Cpreds):
-    # YourCode - Get confusion matrix and accuracy for each k in kb.
+    # Get confusion matrix and accuracy for each k in kb.
     CM, acc = my_confusion(Ctst, pred)
-    # YourCode - Save each confusion matrix.
+    # Save each confusion matrix.
     scipy.io.savemat("cm%d.mat" % k, {'cm': CM}, oned_as='row')
-    # YourCode - Display the required information - k, N, Nerrs, acc for each element of kb
+    # Display the required information - k, N, Nerrs, acc for each element of kb
     N = Xtst.shape[0]
-    print("k = %2d, N = %d, Nerrs = %4d, acc = %.2f%%" % (k, N, N * (1 - acc), acc*100))
-
+    print("k = %2d, N = %d, Nerrs = %4d, acc = %.2f%%" \
+        % (k, N, N * (1 - acc), acc*100))
