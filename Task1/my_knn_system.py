@@ -15,9 +15,9 @@ except Exception:
     print("loaded data from local")
 
 
-# Feature vectors: Convert uint8 to -double- single-precision for speed , and divide by 255.
-Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float32) / 255.0
-Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float32) / 255.0
+# Feature vectors: Convert uint8 to double, and divide by 255.
+Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
+Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
 # Labels : convert float64 to integer, and subtract 1 so that class number starts at 0 rather than 1.
 
 Ctrn = data['dataset']['train'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
