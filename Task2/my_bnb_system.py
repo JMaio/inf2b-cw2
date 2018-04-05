@@ -5,6 +5,7 @@ import numpy as np
 import scipy.io
 import time
 from my_bnb_classify import *
+from bnb_check import *
 from my_confusion import *
 
 # Load the data set
