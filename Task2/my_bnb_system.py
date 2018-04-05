@@ -32,7 +32,8 @@ threshold = 1.0
 print("running my_bnb_classify...")
 Cpreds = my_bnb_classify(Xtrn, Ctrn, Xtst, threshold)
 
-#YourCode - Measure the user time taken, and display it.
+# Measure the user time taken, and display it.
+print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
 #YourCode - Get a confusion matrix and accuracy
 
