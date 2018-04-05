@@ -15,7 +15,7 @@ except Exception:
     print("loaded data from local")
 
 
-# Feature vectors: Convert uint8 to double, and divide by 255.
+# Feature vectors: Convert uint8 to double, and divide by 255
 Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
 Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
 # Labels : convert float64 to integer, and subtract 1 so that class number starts at 0 rather than 1.
@@ -32,13 +32,13 @@ t0 = time.clock()
 print("running my_knn_classify...")
 Cpreds = my_knn_classify(Xtrn, Ctrn, Xtst, kb)
 
-# Measure the user time taken, and display it.
+# Measure the user time taken, and display it
 print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
 for (k, pred) in zip(kb, Cpreds):
-    # Get confusion matrix and accuracy for each k in kb.
+    # Get confusion matrix and accuracy for each k in kb
     CM, acc = my_confusion(Ctst, pred)
-    # Save each confusion matrix.
+    # Save each confusion matrix
     scipy.io.savemat("cm%d.mat" % k, {'cm': CM}, oned_as='row')
     # Display the required information - k, N, Nerrs, acc for each element of kb
     N = Xtst.shape[0]
