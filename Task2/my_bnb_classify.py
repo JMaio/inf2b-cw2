@@ -24,7 +24,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # print(ck_mat)
     # print Xtrn_b.shape
     total_occurs = Xtrn_b.sum(axis=0)   # define total occurreces of each feature
-    class_prob = np.empty((26, Xtrn_b.shape[1]))
+    class_prob = np.empty((26, Xtrn_b.shape[1])) # feature-based class probability
     prior = 1.0 / 26                      # assume uniform prior distribution
     # print total_occurs.shape
 
