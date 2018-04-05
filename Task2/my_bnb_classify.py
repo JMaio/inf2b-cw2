@@ -20,5 +20,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     total_occurs = Xtrn_b.sum(axis=0)           # define total occurreces of each feature
     class_prob = np.empty((26, Xtrn_b.shape[1]))
     for k in range(26):
+        # find occurrences of features for this class
+        occurs = np.where(Ctrn == k, Xtrn_b, 0).sum(axis=0) # mask occurreces
 
     return Cpreds
