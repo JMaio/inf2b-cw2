@@ -17,5 +17,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Xtst_b[Xtst > threshold] = 1
 
     # naive Bayes classification with multivariate Bernoulli distributions
+    total_occurs = Xtrn_b.sum(axis=0)           # define total occurreces of each feature
 
     return Cpreds
