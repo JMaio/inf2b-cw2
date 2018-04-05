@@ -100,7 +100,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # p = np.where(p == 0, np.log(1e-10), np.log(p))
 
     # print(np.sum(p[0][17120/26]))
-    Cpreds = np.argmax(p.prod(axis=1), axis=1) # take product of probabilities, find which class has max probability
     # print(np.min(p))
     # pp = p.sum(axis=1)[:4]
     # print(p.shape)
