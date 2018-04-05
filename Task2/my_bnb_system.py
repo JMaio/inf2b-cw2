@@ -34,13 +34,13 @@ threshold = 1.0
 print("running my_bnb_classify...")
 Cpreds = my_bnb_classify(Xtrn, Ctrn, Xtst, threshold)
 
-# Measure the user time taken, and display it.
+# Measure the user time taken, and display it
 print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
 
-# Save the confusion matrix as "Task2/cm.mat".
+# Save the confusion matrix as "Task2/cm.mat"
 scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
 
 # Display the required information - N, Nerrs, acc
