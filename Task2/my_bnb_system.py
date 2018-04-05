@@ -20,7 +20,7 @@ except Exception:
 # Feature vectors: Convert uint8 to double (but do not divide by 255)
 Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_)
 Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_)
-# Labels : convert float64 to integer, and subtract 1 so that class number starts at 0 rather than 1.
+# Labels : convert float64 to integer, and subtract 1 so that class number starts at 0 rather than 1
 Ctrn = data['dataset']['train'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 Ctst = data['dataset']['test'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 
