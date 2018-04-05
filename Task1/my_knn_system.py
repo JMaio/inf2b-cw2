@@ -17,7 +17,6 @@ except Exception:
     data = scipy.io.loadmat("../data.mat")
     print("loaded data from local")
 
-
 # Feature vectors: Convert uint8 to double, and divide by 255
 Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
 Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
