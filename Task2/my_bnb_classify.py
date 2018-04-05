@@ -47,6 +47,16 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # print(np.where(x[] == 0, c, 1 - c))
     # p = x * c  # 7800x784x26 array of class likelihoods
     p = (1 - c)**(1 - x) * (c)**x   # 7800x784x26 array of class likelihoods using given formula
+    p0 = (1 - c)**(1 - x)
+    p1 = (c**x)
+
+    # replace zero probabilities with "small" number
+    p0 = np.where(p0 <= 1e-10, 1e-10, p0)
+    p1 = np.where(p1 <= 1e-10, 1e-10, p1)
+
+    p0_log = np.log(p0) # np.where(p0 < 1e-10, np.log(1e-10), np.log(p0))
+    p1_log = np.log(p1) # np.where(p1 < 1e-10, np.log(1e-10), np.log(p1))
+    p = p0_log + p1_log # 7800x784x26 log array of class likelihoods using given formula
     # print(np.sum(p[0][17120/26]))
     Cpreds = np.argmax(p.prod(axis=1), axis=1) # take product of probabilities, find which class has max probability
     # print(Xtst_b[:,].shape, class_prob.shape)
