@@ -22,5 +22,8 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     for k in range(26):
         # find occurrences of features for this class
         occurs = np.where(Ctrn == k, Xtrn_b, 0).sum(axis=0) # mask occurreces
+        # set class probability to (class occurreces / total occurreces)
+        class_prob[k] = np.true_divide(occurs, np.where(total_occurs > 0, total_occurs, 1))
+        # -------------------------------- (prevent division by zero by substituting by ones)
 
     return Cpreds
