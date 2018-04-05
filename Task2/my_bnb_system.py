@@ -3,7 +3,9 @@
 
 import numpy as np
 import scipy.io
+import time
 from my_bnb_classify import *
+from my_confusion import *
 
 # Load the data set
 filename = "/afs/inf.ed.ac.uk/group/teaching/inf2b/cwk2/d/s1621503/data.mat"
