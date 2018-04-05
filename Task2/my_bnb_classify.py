@@ -51,7 +51,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
     # print(np.where(x[] == 0, c, 1 - c))
     # p = x * c  # 7800x784x26 array of class likelihoods
-    p = (1 - c)**(1 - x) * (c)**x   # 7800x784x26 array of class likelihoods using given formula
     # t1 = (1 - c)**(1 - x)
     # print(p.min(), p.max())
     # print(t1[:, 197, :].shape)
