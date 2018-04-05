@@ -17,7 +17,7 @@ except Exception:
     data = scipy.io.loadmat("../data.mat")
     print("loaded data from local")
 
-# Feature vectors: Convert uint8 to double   (but do not divide by 255)
+# Feature vectors: Convert uint8 to double (but do not divide by 255)
 Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_)
 Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_)
 # Labels : convert float64 to integer, and subtract 1 so that class number starts at 0 rather than 1.
