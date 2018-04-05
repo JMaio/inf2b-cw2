@@ -41,3 +41,4 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
     p = x * c
     p = (1 - c)**(1 - x) * (c)**x   # 7800x784x26 array of class likelihoods using given formula
+    Cpreds = np.argmax(p.prod(axis=1), axis=1) # take product of probabilities, find which class has max probability
