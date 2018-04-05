@@ -42,7 +42,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # print(ps)
         # print(np.product(ps))
 
-    return Cpreds
     x = Xtst_b[:, :, np.newaxis]        # add third dimension
     c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
     # print(np.where(x[] == 0, c, 1 - c))
@@ -70,3 +69,5 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # print(Xtrn[Xtrn == 1])
     # print(Xtrn.shape)
     # print(Xtrn)
+
+    return Cpreds
