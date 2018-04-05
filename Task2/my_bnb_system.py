@@ -22,7 +22,9 @@ Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_)
 Ctrn = data['dataset']['train'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 Ctst = data['dataset']['test'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
 
-#YourCode - Prepare measuring time
+# Prepare measuring time
+print("starting timer...")
+t0 = time.clock()
 
 # Run classification
 threshold = 1.0
