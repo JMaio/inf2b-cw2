@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# A sample template for my_knn_system.py
+
 import numpy as np
 import scipy.io
 import time
