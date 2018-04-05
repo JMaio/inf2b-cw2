@@ -45,7 +45,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     return Cpreds
     x = Xtst_b[:, :, np.newaxis]        # add third dimension
     c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
-    p = x * c
     # print(np.where(x[] == 0, c, 1 - c))
     # p = x * c  # 7800x784x26 array of class likelihoods
     p = (1 - c)**(1 - x) * (c)**x   # 7800x784x26 array of class likelihoods using given formula
