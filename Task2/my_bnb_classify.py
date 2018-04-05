@@ -42,11 +42,48 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # print(ps)
         # print(np.product(ps))
 
+    # replace zero probabilities with "small" number
+    # class_prob[class_prob == 0] = 1e-10
+
+    # print(np.min(class_prob))
+
     x = Xtst_b[:, :, np.newaxis]        # add third dimension
     c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
     # print(np.where(x[] == 0, c, 1 - c))
     # p = x * c  # 7800x784x26 array of class likelihoods
     p = (1 - c)**(1 - x) * (c)**x   # 7800x784x26 array of class likelihoods using given formula
+    # t1 = (1 - c)**(1 - x)
+    # print(p.min(), p.max())
+    # print(t1[:, 197, :].shape)
+    # print(t1[:, 197, :].sum())
+    # print(c[:, 200:204, :].shape)
+    # print(c[:, 200:204, :].sum(axis=1))
+    #
+    # print(x[:, 200:204, :].shape)
+    # print(x[:, 200:204, :])
+    #
+    # t2 = c[:, 200:204, :]**x[:, 200:204, :] * (1 - c[:, 200:204, :])**(1 - x[:, 200:204, :])
+    # print(t2.shape)
+    # print(t2)
+
+    # Cpreds = np.empty((Xtst.shape[0]), dtype=np.int8)
+    #
+    # print class_prob
+    #
+    # for (i, v) in enumerate(Xtst_b):
+    #     # print np.min((1 - class_prob)**(1 - v))
+    #     # print class_prob**v
+    #     ps = (1 - class_prob)**(1 - v) * class_prob**v
+    #     # print ps.min(axis=1)
+    #     # print(ps.prod(axis=1))
+    #     Cpreds[i] = np.argmax(ps.prod(axis=0))
+    #
+    #
+    # print Xtst_b
+    #
+    # print Cpreds.shape
+    # print Cpreds
+
     p0 = (1 - c)**(1 - x)
     p1 = (c**x)
 
@@ -56,13 +93,28 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
 
     p0_log = np.log(p0) # np.where(p0 < 1e-10, np.log(1e-10), np.log(p0))
     p1_log = np.log(p1) # np.where(p1 < 1e-10, np.log(1e-10), np.log(p1))
+    #
+    # print(np.log(1e-10))
+
     p = p0_log + p1_log # 7800x784x26 log array of class likelihoods using given formula
+    # replace zero probabilities with "small" number
+    # p = np.where(p == 0, np.log(1e-10), np.log(p))
+
     # print(np.sum(p[0][17120/26]))
     Cpreds = np.argmax(p.prod(axis=1), axis=1) # take product of probabilities, find which class has max probability
+    # print(np.min(p))
+    # pp = p.sum(axis=1)[:4]
+    # print(p.shape)
+    # print(np.min(pp))
+    # print(pp)
 
+    # pp = p.prod(axis=1)
     s = p.sum(axis=1)
+    # print(s.shape)
+    # print(s)
 
     Cpreds = np.argmax(s, axis=1) # take product of probabilities, find which class has max probability
+    # print(np.max(p.prod(axis=1), axis=1))
     # print(Xtst_b[:,].shape, class_prob.shape)
 
     # print(p)
