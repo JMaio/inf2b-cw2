@@ -38,6 +38,7 @@ print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
 
-#YourCode - Save the confusion matrix as "Task2/cm.mat".
+# Save the confusion matrix as "Task2/cm.mat".
+scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
 
 #YourCode - Display the required information - N, Nerrs, acc.
