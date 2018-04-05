@@ -41,4 +41,7 @@ CM, acc = my_confusion(Ctst, Cpreds)
 # Save the confusion matrix as "Task2/cm.mat".
 scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
 
-#YourCode - Display the required information - N, Nerrs, acc.
+# Display the required information - N, Nerrs, acc
+N = Xtst.shape[0]
+print("N = %d, Nerrs = %4d, acc = %.2f%%" \
+    % (N, N * (1 - acc), acc*100))
