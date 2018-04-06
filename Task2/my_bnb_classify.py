@@ -23,7 +23,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     total_occurs = Xtrn_b.sum(axis=0) + 1.0
     # print(total_occurs.shape)
     class_prob = np.empty((26, Xtrn_b.shape[1])) # feature-based class probability
-    probs = np.empty((Xtst_b.shape[0], 26)) # final class probability of each test vector
+    # probs = np.empty((Xtst_b.shape[0], 26)) # final class probability of each test vector
     # class_likelihood = np.empty((26, 1))
     # assume uniform prior distribution
     # print total_occurs.shape
