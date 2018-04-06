@@ -2,6 +2,7 @@ import numpy as np
 # ignore numpy division errors
 # np.seterr(divide='ignore', invalid='ignore')
 
+
 def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # Input:
     #   Xtrn : M-by-D ndarray of training data (dtype=np.float_)
@@ -19,39 +20,49 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Xtst_b[Xtst > threshold] = 1
 
     # naive Bayes classification with multivariate Bernoulli distributions
-    # define smoothing factor
-    smooth_f = 1e-10
+
     # define total occurreces of each feature, use add-one smoothing
     total_occurs = Xtrn_b.sum(axis=0)
 
     prior = 1.0 / 26
+
+    # feature-based class count
     class_count = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
     # feature-based class probability
-    class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
+    log_class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
 
-    Ctrn = Ctrn.ravel()
+    # convert training classes into 1D array
+    Ctrn_1d = Ctrn.ravel()
+
     for c in range(26):
         # find occurrences of features for this class
-        occurs = Xtrn_b[np.ravel(Ctrn == c), :].sum(axis=0)
-        # set class probability to (class occurreces / total occurreces)
-        class_prob[c] = occurs / total_occurs
+        class_count[c] = Xtrn_b[Ctrn_1d == c, :].sum(axis=0)
 
-    Cpreds = np.empty((Xtst_b.shape[0]), dtype=np.int_)
+    # set class probability to class occurrences / total occurrences)
+    log_class_prob = np.log(class_count + 1.0) - np.log(total_occurs + 26.0)
+    # (here, class probability is Laplace smoothed)
+
+    print(log_class_prob)
+
+    # class_prob *= prior
+    Cpreds = np.zeros((Xtst_b.shape[0]), dtype=np.int_)
+    # Cpreds = np.zeros((Xtst_b.shape[0], 26), dtype=np.int_)
+
+    # log_class_prob = np.log(class_prob)
+    # print(log_class_prob[0,:8])
+    # print((1 - class_prob[0,:8]))
 
     for (i, v) in enumerate(Xtst_b):
-        # print(v[:120])
-        # print (1 - v) * np.log((1+1e-10) - class_prob)
-        # print v * np.log(1e-10 + class_prob)
-        # print("-----------------------------------------------")
-        p = (1 - v) * np.log((1+1e-10) - class_prob) + v * np.log(1e-10 + class_prob)
-        # print(p.shape)
-        # print(p)
-        m = p.sum(axis=1)
-        # print(m.shape)
-        # print(m)
-        # print(m.argmax())
-        Cpreds[i] = m.argmax()
+
+        neg_p = np.log(1 - class_prob)
+
+        p0 = np.dot(v, (log_class_prob -  neg_p).T)
+        p1 = neg_p.sum(axis=1)
+
+        p = p0 + p1 + np.log(prior)
+
+        Cpreds[i] = p.argmax()
 
     print(Cpreds)
 
-    return Cpreds
+    return (log_class_prob, Cpreds)
