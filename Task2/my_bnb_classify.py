@@ -56,6 +56,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # class_prob[k] = feature_prob
         # print class_prob[k]
 
+    Cpreds = np.empty((1, Xtst_b.shape[0]), dtype=np.int_)
     #
     # p0 = (1 - c)**(1 - x)
     # p1 = (c**x)
