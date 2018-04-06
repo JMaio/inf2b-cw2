@@ -40,7 +40,6 @@ print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
-_, acc1 = my_confusion(Ctst, Cpreds1)
 
 # Save the confusion matrix as "Task2/cm.mat"
 scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
@@ -49,5 +48,3 @@ scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
 N = Xtst.shape[0]
 print("N = %d, Nerrs = %4d, acc = %.2f%%" \
     % (N, N * (1 - acc), acc*100))
-print("N = %d, Nerrs = %4d, acc = %.2f%%" \
-    % (N, N * (1 - acc1), acc1*100))
