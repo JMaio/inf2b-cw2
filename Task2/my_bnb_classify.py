@@ -27,7 +27,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     prior = 1.0 / 26
     class_count = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
     # feature-based class probability
-    class_prob = np.empty((26, Xtrn_b.shape[1]))
+    class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
 
     for c in range(26):
         # find occurrences of features for this class
