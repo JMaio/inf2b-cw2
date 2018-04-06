@@ -12,10 +12,10 @@ filename = "/afs/inf.ed.ac.uk/group/teaching/inf2b/cwk2/d/s1621503/data.mat"
 # use local data set while not connected to afs
 try:
     data = scipy.io.loadmat(filename)
-    print("loaded data from afs")
+    print("loaded data from afs!")
 except Exception:
     data = scipy.io.loadmat("../data.mat")
-    print("loaded data from local")
+    print("couldn't data from afs! loading local data...")
 
 # Feature vectors: Convert uint8 to double, and divide by 255
 Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
