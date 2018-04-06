@@ -28,6 +28,11 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # assume uniform prior distribution
     # print total_occurs.shape
 
+    # print Ctrn.shape
+    # print (Ctrn == 4).flatten()
+    #
+    # print(Xtrn_b[np.ravel(Ctrn == 4), :])
+
     for k in range(26):
         # find occurrences of features for this class
         occurs = np.where(Ctrn == k, Xtrn_b, 0).sum(axis=0) # mask occurreces
@@ -56,27 +61,24 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # print(c[:, 200:204, :].shape)
     # print(c[:, 200:204, :].sum(axis=1))
     #
-    # print(x[:, 200:204, :].shape)
-    # print(x[:, 200:204, :])
+    # p0 = (1 - c)**(1 - x)
+    # p1 = (c**x)
+    # # p0 = (1 - x) * np.log(1 - c)
+    # # p1 = x * np.log(c)
     #
-    # t2 = c[:, 200:204, :]**x[:, 200:204, :] * (1 - c[:, 200:204, :])**(1 - x[:, 200:204, :])
-    # print(t2.shape)
-    # print(t2)
-
-    # Cpreds = np.empty((Xtst.shape[0]), dtype=np.int8)
+    # # replace zero probabilities with "small" number
+    # p0 = np.where(p0 <= 1e-10, 1e-10, p0)
+    # p1 = np.where(p1 <= 1e-10, 1e-10, p1)
     #
-    # print class_prob
+    # p0_log = np.log(p0) # np.where(p0 < 1e-10, np.log(1e-10), np.log(p0))
+    # p1_log = np.log(p1) # np.where(p1 < 1e-10, np.log(1e-10), np.log(p1))
+    # #
+    # # print(np.log(1e-10))
     #
-    # for (i, v) in enumerate(Xtst_b):
-    #     # print np.min((1 - class_prob)**(1 - v))
-    #     # print class_prob**v
-    #     ps = (1 - class_prob)**(1 - v) * class_prob**v
-    #     # print ps.min(axis=1)
-    #     # print(ps.prod(axis=1))
-    #     Cpreds[i] = np.argmax(ps.prod(axis=0))
+    # # p = p0 + p1 # 7800x784x26 log array of class likelihoods using given formula
+    # p = p0_log + p1_log # 7800x784x26 log array of class likelihoods using given formula
     #
-    #
-    # print Xtst_b
+    # s = p.sum(axis=1)
     #
     # print Cpreds.shape
     # print Cpreds
