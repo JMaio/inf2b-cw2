@@ -33,8 +33,9 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Ctrn_1d = Ctrn.ravel()
 
     for c in range(26):
-        # find occurrences of features for this class
-        class_count[c] = Xtrn_b[Ctrn_1d == c, :].sum(axis=0)
+        # find occurrences of this class
+        class_prob[c] = np.true_divide(Xtrn_b[Ctrn_1d == c, :].sum(axis=0),
+                                       Ctrn[Ctrn_1d == c].shape[0])
 
     # set class probability to class occurrences / total occurrences)
     log_class_prob = np.log(class_count + 1.0) - np.log(total_occurs + 26.0)
