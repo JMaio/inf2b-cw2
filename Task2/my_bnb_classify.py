@@ -22,7 +22,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # define total occurreces of each feature, use add-one smoothing
     total_occurs = Xtrn_b.sum(axis=0) + 1.0
     # print(total_occurs.shape)
-    class_prob = np.empty((26, Xtrn_b.shape[1])) # feature-based class probability
     # probs = np.empty((Xtst_b.shape[0], 26)) # final class probability of each test vector
     # class_likelihood = np.empty((26, 1))
     # assume uniform prior distribution
@@ -32,6 +31,8 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # print (Ctrn == 4).flatten()
     #
     # print(Xtrn_b[np.ravel(Ctrn == 4), :])
+    # feature-based class probability
+    class_prob = np.empty((26, Xtrn_b.shape[1]))
 
     for k in range(26):
         # find occurrences of features for this class
