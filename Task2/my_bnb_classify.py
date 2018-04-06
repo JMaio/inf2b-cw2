@@ -25,6 +25,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     total_occurs = Xtrn_b.sum(axis=0)
 
     prior = 1.0 / 26
+    class_count = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
     # feature-based class probability
     class_prob = np.empty((26, Xtrn_b.shape[1]))
 
