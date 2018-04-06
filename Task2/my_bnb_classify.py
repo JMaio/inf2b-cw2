@@ -29,19 +29,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         class_prob[c] = np.true_divide(Xtrn_b[Ctrn_1d == c, :].sum(axis=0),
                                        Ctrn[Ctrn_1d == c].shape[0])
 
-    # set class probability to class occurrences / total occurrences)
-    log_class_prob = np.log(class_count + 1.0) - np.log(total_occurs + 26.0)
-    # (here, class probability is Laplace smoothed)
-
-    # print(log_class_prob)
-
-    # class_prob *= prior
     Cpreds = np.zeros((Xtst_b.shape[0]), dtype=np.int_)
-    # Cpreds = np.zeros((Xtst_b.shape[0], 26), dtype=np.int_)
-
-    # log_class_prob = np.log(class_prob)
-    # print(log_class_prob[0,:8])
-    # print((1 - class_prob[0,:8]))
 
     for (i, v) in enumerate(Xtst_b):
 
