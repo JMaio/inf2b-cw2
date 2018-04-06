@@ -16,8 +16,8 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Xtrn_b = np.zeros(Xtrn.shape, dtype=np.int8) #
     Xtst_b = np.zeros(Xtst.shape, dtype=np.int8) # store as byte to conserve memory
 
-    Xtrn_b[Xtrn >= threshold] = 1
-    Xtst_b[Xtst >= threshold] = 1
+    Xtrn_b[Xtrn > threshold] = 1
+    Xtst_b[Xtst > threshold] = 1
 
     # naive Bayes classification with multivariate Bernoulli distributions
 
