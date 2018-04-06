@@ -31,7 +31,14 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Cpreds = np.zeros((Xtst_b.shape[0]), dtype=np.int_)
 
     for (i, v) in enumerate(Xtst_b):
+        # mask occurrences according to naive bayes formula
+        p0 = np.where(v == 0, 1 - class_prob, 1)
+        p1 = np.where(v == 1, class_prob, 1)
 
+        # multiply products
+        p = p0.prod(axis=1) * p1.prod(axis=1)
+        # find max prediction
+        Cpreds[i] = p.argmax()
 
 
     print(Cpreds)
