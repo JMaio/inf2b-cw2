@@ -97,3 +97,4 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     #
     # Cpreds = np.argmax(s, axis=1) # take product of probabilities, find which class has max probability
 
+    return np.ravel(Cpreds)
