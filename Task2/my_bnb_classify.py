@@ -42,6 +42,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # print(occurs[:6])
         # print(total_occurs[:6])
 
+        class_prob[k] = occurs / total_occurs
         # feature_prob = np.where(
         #     total_occurs > 0,
         #     occurs / total_occurs,
