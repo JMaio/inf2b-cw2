@@ -56,7 +56,25 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # class_prob[k] = feature_prob
         # print class_prob[k]
 
+
     Cpreds = np.empty((1, Xtst_b.shape[0]), dtype=np.int_)
+
+    for (i, v) in enumerate(Xtst_b):
+        # print(v[:120])
+        # print (1 - v) * np.log((1+1e-10) - class_prob)
+        # print v * np.log(1e-10 + class_prob)
+        # print("-----------------------------------------------")
+        p = (1 - v) * np.log((1+1e-10) - class_prob) + v * np.log(1e-10 + class_prob)
+        # print(p.shape)
+        # print(p)
+        m = p.sum(axis=1)
+        # print(m.shape)
+        # print(m.argmax())
+        Cpreds[0, i] = m.argmax()
+
+    print(np.ravel(Cpreds))
+    # x = Xtst_b[:, :, np.newaxis]        # add third dimension
+    # c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
     #
     # p0 = (1 - c)**(1 - x)
     # p1 = (c**x)
