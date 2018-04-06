@@ -40,7 +40,4 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # find max prediction
         Cpreds[i] = p.argmax()
 
-
-    print(Cpreds)
-
-    return (log_class_prob, Cpreds)
+    return Cpreds
