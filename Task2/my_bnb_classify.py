@@ -29,6 +29,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # feature-based class probability
     class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
 
+    Ctrn = Ctrn.ravel()
     for c in range(26):
         # find occurrences of features for this class
         occurs = Xtrn_b[np.ravel(Ctrn == c), :].sum(axis=0)
