@@ -42,7 +42,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     log_class_prob = np.log(class_count + 1.0) - np.log(total_occurs + 26.0)
     # (here, class probability is Laplace smoothed)
 
-    print(log_class_prob)
+    # print(log_class_prob)
 
     # class_prob *= prior
     Cpreds = np.zeros((Xtst_b.shape[0]), dtype=np.int_)
