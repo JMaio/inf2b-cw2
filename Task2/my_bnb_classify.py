@@ -54,14 +54,17 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
 
     for (i, v) in enumerate(Xtst_b):
 
+
         neg_p = np.log(1 - class_prob)
 
-        p0 = np.dot(v, (log_class_prob -  neg_p).T)
-        p1 = neg_p.sum(axis=1)
+        p0 = np.where(v == 0, neg_p, 0)
+        p1 = np.where(v == 1, log_class_prob, 0)
 
-        p = p0 + p1 + np.log(prior)
+        p = p0 + p1
 
-        Cpreds[i] = p.argmax()
+        m = p.sum(axis=1)
+
+        Cpreds[i] = m.argmax()
 
     print(Cpreds)
 
