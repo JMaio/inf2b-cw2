@@ -1,4 +1,6 @@
 import numpy as np
+# ignore numpy division errors
+# np.seterr(divide='ignore', invalid='ignore')
 
 def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # Input:
