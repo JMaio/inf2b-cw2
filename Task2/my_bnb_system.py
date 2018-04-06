@@ -41,13 +41,13 @@ print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 
 # print zip(Cpreds[:100], Ctst[:100].ravel())
 
-print count0.shape
-print count1.shape
-# print count0.sum(axis=0)
-# print count1.sum(axis=0)
-#
-print (count0 - count1)
-print (count0 - count1).min()
+# print count0.shape
+# print count1.shape
+# # print count0.sum(axis=0)
+# # print count1.sum(axis=0)
+# #
+# print (count0 - count1)
+# print (count0 - count1).min()
 
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
