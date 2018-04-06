@@ -31,7 +31,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # set class probability to (class occurreces / total occurreces)
         class_prob[k] = occurs / total_occurs
 
-    Cpreds = np.empty((1, Xtst_b.shape[0]), dtype=np.int_)
+    Cpreds = np.empty((Xtst_b.shape[0]), dtype=np.int_)
 
     for (i, v) in enumerate(Xtst_b):
         # print(v[:120])
@@ -44,8 +44,8 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         m = p.sum(axis=1)
         # print(m.shape)
         # print(m.argmax())
-        Cpreds[0, i] = m.argmax()
+        Cpreds[i] = m.argmax()
 
-    print(np.ravel(Cpreds))
-    
-    return np.ravel(Cpreds)
+    print(Cpreds)
+
+    return Cpreds
