@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # Input:
     #   Xtrn : M-by-D ndarray of training data (dtype=np.float_)
