@@ -24,7 +24,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Ctrn_1d = Ctrn.ravel()
 
     for c in range(26):
-        # find occurrences of this class
+        # find occurrences of this class, divide
         class_prob[c] = np.true_divide(Xtrn_b[Ctrn_1d == c, :].sum(axis=0),
                                        Ctrn[Ctrn_1d == c].shape[0])
 
