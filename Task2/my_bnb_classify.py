@@ -25,29 +25,12 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # feature-based class probability
     class_prob = np.empty((26, Xtrn_b.shape[1]))
 
-    
     for k in range(26):
         # find occurrences of features for this class
-        occurs = Xtrn_b[np.ravel(Ctrn == k), :].sum(axis=0) # mask occurreces
+        occurs = Xtrn_b[np.ravel(Ctrn == k), :].sum(axis=0)
         # set class probability to (class occurreces / total occurreces)
-        # print(np.true_divide(0,1))
-        # cond = np.logical_or(, occurs == 0)
-        # print(occurs[:6])
-        # print(total_occurs[:6])
-
         class_prob[k] = occurs / total_occurs
-        # feature_prob = np.where(
-        #     total_occurs > 0,
-        #     occurs / total_occurs,
-        #     1e-10)
 
-        # print(feature_prob)
-        # print("-----------------------------------------------")
-
-        # feature_prob[feature_prob == 0] = 1e-10
-
-        # class_prob[k] = feature_prob
-        # print class_prob[k]
 
 
     Cpreds = np.empty((1, Xtst_b.shape[0]), dtype=np.int_)
