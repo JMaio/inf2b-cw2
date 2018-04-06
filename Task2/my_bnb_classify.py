@@ -27,7 +27,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # feature-based class count
     class_count = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
     # feature-based class probability
-    log_class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
 
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
