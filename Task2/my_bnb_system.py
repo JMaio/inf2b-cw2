@@ -33,7 +33,7 @@ t0 = time.clock()
 threshold = 1.0
 
 print("running my_bnb_classify...")
-count0, Cpreds = my_bnb_classify(Xtrn, Ctrn, Xtst, threshold)
+Cpreds = my_bnb_classify(Xtrn, Ctrn, Xtst, threshold)
 # count1, Cpreds1 = bnb_check_classify(Xtrn, Ctrn, Xtst, threshold)
 
 # Measure the user time taken, and display it
