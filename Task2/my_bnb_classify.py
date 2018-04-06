@@ -19,6 +19,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
 
     ## naive Bayes classification with multivariate Bernoulli distributions
     # feature-based class probability
+    class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
 
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
