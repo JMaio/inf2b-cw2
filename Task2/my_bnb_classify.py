@@ -31,8 +31,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # set class probability to (class occurreces / total occurreces)
         class_prob[k] = occurs / total_occurs
 
-
-
     Cpreds = np.empty((1, Xtst_b.shape[0]), dtype=np.int_)
 
     for (i, v) in enumerate(Xtst_b):
@@ -49,28 +47,5 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         Cpreds[0, i] = m.argmax()
 
     print(np.ravel(Cpreds))
-    # x = Xtst_b[:, :, np.newaxis]        # add third dimension
-    # c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
-    #
-    # p0 = (1 - c)**(1 - x)
-    # p1 = (c**x)
-    # # p0 = (1 - x) * np.log(1 - c)
-    # # p1 = x * np.log(c)
-    #
-    # # replace zero probabilities with "small" number
-    # p0 = np.where(p0 <= 1e-10, 1e-10, p0)
-    # p1 = np.where(p1 <= 1e-10, 1e-10, p1)
-    #
-    # p0_log = np.log(p0) # np.where(p0 < 1e-10, np.log(1e-10), np.log(p0))
-    # p1_log = np.log(p1) # np.where(p1 < 1e-10, np.log(1e-10), np.log(p1))
-    # #
-    # # print(np.log(1e-10))
-    #
-    # # p = p0 + p1 # 7800x784x26 log array of class likelihoods using given formula
-    # p = p0_log + p1_log # 7800x784x26 log array of class likelihoods using given formula
-    #
-    # s = p.sum(axis=1)
-    #
-    # Cpreds = np.argmax(s, axis=1) # take product of probabilities, find which class has max probability
-
+    
     return np.ravel(Cpreds)
