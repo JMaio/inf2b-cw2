@@ -23,13 +23,15 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
 
+    # foreach class
     for c in range(26):
-        # find occurrences of this class, divide
+        # find feature occurrences of this class, divide by class occurrences
         class_prob[c] = np.true_divide(Xtrn_b[Ctrn_1d == c, :].sum(axis=0),
                                        Ctrn[Ctrn_1d == c].shape[0])
 
     Cpreds = np.zeros((Xtst_b.shape[0]), dtype=np.int_)
 
+    # iterate through test vectors and remember their original position
     for (i, v) in enumerate(Xtst_b):
         # mask occurrences according to naive bayes formula
         p0 = np.where(v == 0, 1 - class_prob, 1)
