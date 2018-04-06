@@ -35,7 +35,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
 
     for k in range(26):
         # find occurrences of features for this class
-        occurs = np.where(Ctrn == k, Xtrn_b, 0).sum(axis=0) # mask occurreces
+        occurs = Xtrn_b[np.ravel(Ctrn == k), :].sum(axis=0) # mask occurreces
         # set class probability to (class occurreces / total occurreces)
         # print(np.true_divide(0,1))
         # cond = np.logical_or(, occurs == 0)
