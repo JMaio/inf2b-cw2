@@ -37,29 +37,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         # find occurrences of features for this class
         occurs = np.where(Ctrn == k, Xtrn_b, 0).sum(axis=0) # mask occurreces
         # set class probability to (class occurreces / total occurreces)
-        class_prob[k] = np.true_divide(occurs, np.where(total_occurs > 0, total_occurs, 1))
-        # -------------------------------- (prevent division by zero by substituting by ones)
-        # mask multiplication form P(bi=0|Ck)^(1-bi) * P(bi=1|Ck)^(bi)
-        # ps = np.where(class_prob[k] > 0, class_prob[k], 1)  # workaround `div 0`
-        # # take product of resultant individual probabilities
-        # print(ps)
-        # print(np.product(ps))
-
-    # replace zero probabilities with "small" number
-    # class_prob[class_prob == 0] = 1e-10
-
-    # print(np.min(class_prob))
-
-    x = Xtst_b[:, :, np.newaxis]        # add third dimension
-    c = class_prob.T[np.newaxis, :, :]  # prepend axis to create 3d array
-    # print(np.where(x[] == 0, c, 1 - c))
-    # p = x * c  # 7800x784x26 array of class likelihoods
-    # t1 = (1 - c)**(1 - x)
-    # print(p.min(), p.max())
-    # print(t1[:, 197, :].shape)
-    # print(t1[:, 197, :].sum())
-    # print(c[:, 200:204, :].shape)
-    # print(c[:, 200:204, :].sum(axis=1))
     #
     # p0 = (1 - c)**(1 - x)
     # p1 = (c**x)
