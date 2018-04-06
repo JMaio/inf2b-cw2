@@ -22,7 +22,7 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # define smoothing factor
     smooth_f = 1e-10
     # define total occurreces of each feature, use add-one smoothing
-    total_occurs = Xtrn_b.sum(axis=0) + 1.0
+    total_occurs = Xtrn_b.sum(axis=0)
 
     # feature-based class probability
     class_prob = np.empty((26, Xtrn_b.shape[1]))
