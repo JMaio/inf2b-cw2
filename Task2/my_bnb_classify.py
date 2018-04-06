@@ -18,14 +18,6 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Xtst_b[Xtst > threshold] = 1
 
     # naive Bayes classification with multivariate Bernoulli distributions
-
-    # define total occurreces of each feature, use add-one smoothing
-    total_occurs = Xtrn_b.sum(axis=0)
-
-    prior = 1.0 / 26
-
-    # feature-based class count
-    class_count = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
     # feature-based class probability
 
     # convert training classes into 1D array
