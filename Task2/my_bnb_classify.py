@@ -1,6 +1,4 @@
 import numpy as np
-# ignore numpy division errors
-# np.seterr(divide='ignore', invalid='ignore')
 
 def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     # Input:
@@ -12,46 +10,36 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
     # binarisation of Xtrn and Xtst.
-    Xtrn_b = np.zeros(Xtrn.shape, dtype=np.int8) #
-    Xtst_b = np.zeros(Xtst.shape, dtype=np.int8) # store as byte to conserve memory
-
+    Xtrn_b = np.zeros(Xtrn.shape, dtype=np.int8) # store as byte to conserve memory
     Xtrn_b[Xtrn > threshold] = 1
+
+    Xtst_b = np.zeros(Xtst.shape, dtype=np.int8) # store as byte to conserve memory
     Xtst_b[Xtst > threshold] = 1
 
-    # naive Bayes classification with multivariate Bernoulli distributions
-    # define smoothing factor
-    smooth_f = 1e-10
-    # define total occurreces of each feature, use add-one smoothing
-    total_occurs = Xtrn_b.sum(axis=0)
-
-    prior = 1.0 / 26
-    class_count = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
+    ## naive Bayes classification with multivariate Bernoulli distributions
     # feature-based class probability
     class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
 
-    Ctrn = Ctrn.ravel()
+    # convert training classes into 1D array
+    Ctrn_1d = Ctrn.ravel()
+
+    # foreach class
     for c in range(26):
-        # find occurrences of features for this class
-        occurs = Xtrn_b[np.ravel(Ctrn == c), :].sum(axis=0)
-        # set class probability to (class occurreces / total occurreces)
-        class_prob[c] = occurs / total_occurs
+        # find feature occurrences of this class, divide by class occurrences
+        class_prob[c] = np.true_divide(Xtrn_b[Ctrn_1d == c, :].sum(axis=0),
+                                       Ctrn[Ctrn_1d == c].shape[0])
 
-    Cpreds = np.empty((Xtst_b.shape[0]), dtype=np.int_)
+    Cpreds = np.zeros((Xtst_b.shape[0]), dtype=np.int_)
 
+    # iterate through test vectors and remember their original position
     for (i, v) in enumerate(Xtst_b):
-        # print(v[:120])
-        # print (1 - v) * np.log((1+1e-10) - class_prob)
-        # print v * np.log(1e-10 + class_prob)
-        # print("-----------------------------------------------")
-        p = (1 - v) * np.log((1+1e-10) - class_prob) + v * np.log(1e-10 + class_prob)
-        # print(p.shape)
-        # print(p)
-        m = p.sum(axis=1)
-        # print(m.shape)
-        # print(m)
-        # print(m.argmax())
-        Cpreds[i] = m.argmax()
+        # mask occurrences according to naive bayes formula
+        p0 = np.where(v == 0, 1 - class_prob, 1)
+        p1 = np.where(v == 1, class_prob, 1)
 
-    print(Cpreds)
+        # multiply products
+        p = p0.prod(axis=1) * p1.prod(axis=1)
+        # find max prediction
+        Cpreds[i] = p.argmax()
 
     return Cpreds
