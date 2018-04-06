@@ -19,6 +19,8 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Xtst_b[Xtst > threshold] = 1
 
     # naive Bayes classification with multivariate Bernoulli distributions
+    # define smoothing factor
+    smooth_f = 1e-10
     # define total occurreces of each feature, use add-one smoothing
     total_occurs = Xtrn_b.sum(axis=0) + 1.0
 
