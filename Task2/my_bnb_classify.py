@@ -16,15 +16,17 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
     Xtst_b = np.zeros(Xtst.shape, dtype=np.int8) # store as byte to conserve memory
     Xtst_b[Xtst >= threshold] = 1
 
-    ## naive Bayes classification with multivariate Bernoulli distributions
-    # feature-based class probability
-    class_prob = np.zeros((26, Xtrn_b.shape[1]), dtype=np.float_)
-
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
+    # number of classes
+    n_c = np.max(Ctrn) + 1
+
+    ## naive Bayes classification with multivariate Bernoulli distributions
+    # feature-based class probability
+    class_prob = np.zeros((n_c, Xtrn_b.shape[1]), dtype=np.float_)
 
     # foreach class
-    for c in range(26):
+    for c in range(n_c):
         # find feature occurrences of this class, divide by class occurrences
         class_prob[c] = np.true_divide(Xtrn_b[Ctrn_1d == c, :].sum(axis=0),
                                        Ctrn[Ctrn_1d == c].shape[0])
