@@ -8,7 +8,7 @@ from my_bnb_classify import *
 from my_confusion import *
 
 # Load the data set
-filename = "/afs/inf.ed.ac.uk/group/teaching/inf2b/cwk2/d/<UUN>/data.mat";
+filename = "/afs/inf.ed.ac.uk/group/teaching/inf2b/cwk2/d/s1621503/data.mat";
 # use local data set while not connected to afs
 try:
     data = scipy.io.loadmat(filename)
