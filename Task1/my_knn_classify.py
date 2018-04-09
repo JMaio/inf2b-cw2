@@ -1,5 +1,4 @@
 import numpy as np
-import scipy
 from scipy import stats
 import time
 
@@ -11,7 +10,6 @@ def my_sq_dist(Xtrn, Xtst):
     #     Xtst^2 = np.sum(Xtst ** 2, axis=1)                # lengths of all test vectors
     #     Xtrn * Xtst = np.dot(Xtrn, Xtst.T)                # matrix product of sums of products
 
-    # return scipy.spatial.distance.cdist (Xtst, Xtrn, metric='sqeuclidean')
     t = time.clock()
     m = np.sum(Xtst**2, axis=1)[:, np.newaxis] \
       + np.sum(Xtrn**2, axis=1) \
