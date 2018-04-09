@@ -28,7 +28,7 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
     # set shape of prediction matrix
-    Cpreds = np.empty((len(Ks), Xtst.shape[0]), dtype=np.int_)
+    Cpreds = np.empty((0, Xtst.shape[0]), dtype=np.int_)
 
     # get minimum value indices as columns
     d = my_sq_dist(Xtrn, Xtst)
@@ -44,6 +44,6 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
         # calculate most likely class from mode of closest k
         preds = stats.mode(Ctrn[inds].reshape(k, Xtst.shape[0]))[0]
         # concatenate to output
-        Cpreds[i] = preds
+        Cpreds = np.concatenate((Cpreds[:i], preds, Cpreds[i:]))
 
     return Cpreds
