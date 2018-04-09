@@ -14,7 +14,7 @@ def my_sq_dist(Xtrn, Xtst):
     m = np.sum(Xtst**2, axis=1)[:, np.newaxis] \
       + np.sum(Xtrn**2, axis=1) \
       - 2 * np.dot(Xtst, Xtrn.T)
-    print("dists: %.2fs" % (time.clock() - t))
+    print("distances: %.2fs" % (time.clock() - t))
     return m
 
 
