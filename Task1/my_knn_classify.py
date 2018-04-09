@@ -1,6 +1,6 @@
 import numpy as np
 from scipy import stats
-# import time
+import time
 
 
 def my_sq_dist(Xtrn, Xtst):
@@ -10,11 +10,11 @@ def my_sq_dist(Xtrn, Xtst):
     #     Xtst^2 = np.sum(Xtst ** 2, axis=1)                # lengths of all test vectors
     #     Xtrn * Xtst = np.dot(Xtrn, Xtst.T)                # matrix product of sums of products
 
-    # t = time.clock()
+    t = time.clock()
     m = np.sum(Xtst**2, axis=1)[:, np.newaxis] \
       + np.sum(Xtrn**2, axis=1) \
       - 2 * np.dot(Xtst, Xtrn.T)
-    # print("dists: %.2fs" % (time.clock() - t))
+    print("dists: %.2fs" % (time.clock() - t))
     return m
 
 
@@ -32,10 +32,10 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
 
     # get minimum value indices as columns
     d = my_sq_dist(Xtrn, Xtst)
-    # t = time.clock()
+    t = time.clock()
     # d = np.argpartition(d, max(Ks), axis=0)
     d = np.argsort(d, kind='quicksort')
-    # print("sort: %.2fs" % (time.clock() - t))
+    print("sort: %.2fs" % (time.clock() - t))
 
     # foreach in Ks, calculate k nearest neighbour classification
     for (i, k) in enumerate(Ks):
