@@ -33,7 +33,7 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     # get minimum value indices as columns
     d = my_sq_dist(Xtrn, Xtst)
     t = time.clock()
-    # d = np.argpartition(d, max(Ks), axis=0)
+
     d = np.argsort(d, kind='quicksort')
     print("sort: %.2fs" % (time.clock() - t))
 
