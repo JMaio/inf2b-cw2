@@ -45,7 +45,7 @@ scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
 
 # Save the mean vector
 scipy.io.savemat("m26.mat", {'m26': Ms[25]}, oned_as='row')
-# and covariance matrix for class 26,
+# and covariance matrix for class 26
 scipy.io.savemat("cov26.mat", {'cov26': Covs[:, :, 25]}, oned_as='row')
 
 #YourCode - Display the required information - N, Nerrs, acc
