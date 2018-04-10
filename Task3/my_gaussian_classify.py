@@ -61,8 +61,18 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # define log posterior probabilities
     log_pps = np.empty((Xtst.shape[0], 26))
 
+    for c in range(26):
         # calculate covariance matrix log determinant
+        cov_logdet = logdet(Covs[:, :, c])
         # calculate covariance matrix inverse
+        cov_inv = np.linalg.inv(Covs[:, :, c])
         # subtract mean from test vectors
+        m = (Xtst - Ms[c])
         # ignoring "+ ln P(C)" assuming uniform prior distribution
+        log_pp = - 0.5 * (m.dot(cov_inv.dot(m.T)) - cov_logdet)
+        # for (i, v) in enumerate(Xtst):
+        #     log_pps[i, c] =
+        log_pps[:, c] = log_pp.diagonal().ravel()
+        # print(log_pps[:, c])
+        print("calculated class #%2d" % c)
     return (Cpreds, Ms, Covs)
