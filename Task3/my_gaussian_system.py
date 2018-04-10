@@ -40,7 +40,8 @@ print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
 
-#YourCode - Save the confusion matrix as "Task3/cm.mat"
+# Save the confusion matrix as "Task3/cm.mat"
+scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
 
 #YourCode - Save the mean vector and covariance matrix for class 26,
 #           i.e. save Mu(:,25) and Cov(:,:,25) as "Task3/m26.mat" and
