@@ -2,11 +2,11 @@ import numpy as np
 import time
 
 
-def my_mean(Xtrn):
+def my_mean(Xtrn_c):
     # number of features
-    N = Xtrn.shape[0]
+    N = Xtrn_c.shape[0]
     # sum over all components of each feature
-    sum_N = np.sum(Xtrn, axis=0)
+    sum_N = np.sum(Xtrn_c, axis=0)
     # divide totals by number of features
     return sum_N / N
 
