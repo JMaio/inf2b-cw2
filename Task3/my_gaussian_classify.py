@@ -37,8 +37,11 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # create empty array to hold each class covariance matrix
     Covs = np.empty((Xtrn.shape[0] / 26, 26))
 
+    # start independent timer for covariance calculation
+    t = time.clock()
     for c in range(26):
         pass
+    print("covariance matrices: %.2fs" % (time.clock() - t))
 
 
 
