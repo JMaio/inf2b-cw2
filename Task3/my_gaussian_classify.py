@@ -14,8 +14,10 @@ def my_mean(Xtrn_c):
 def my_cov(Xtrn_c, mu):
     # subtract mean from training data
     m = (Xtrn_c - mu)
-    # matrix multiply (m x m.T) to calculate covariance matrix
-    return np.dot(m, m.T)
+    # matrix multiply (m.T x m) and divide by occurrences to calculate covariance matrix
+    cov = np.dot(m.T, m) / Xtrn_c.shape[0]
+    # by transposing, D-by-D dimensions are maintained for this array
+    return cov
 
 
 def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
