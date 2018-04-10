@@ -50,5 +50,6 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # print(Covs.shape)
 
 
+    print("covariance matrices: %.2fs" % (time.clock() - t))
 
     return (Cpreds, Ms, Covs)
