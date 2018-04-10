@@ -49,3 +49,6 @@ scipy.io.savemat("m26.mat", {'m26': Ms[25]}, oned_as='row')
 scipy.io.savemat("cov26.mat", {'cov26': Covs[:, :, 25]}, oned_as='row')
 
 #YourCode - Display the required information - N, Nerrs, acc
+N = Xtst.shape[0]
+print("N = %d, Nerrs = %4d, acc = %.2f%%" \
+    % (N, N * (1 - acc), acc*100))
