@@ -11,9 +11,7 @@ def my_mean(Xtrn_c):
     return sum_N / N
 
 
-def my_cov(Xtrn_c):
-    # get mean (mu) for this class
-    mu = my_mean(Xtrn_c)
+def my_cov(Xtrn_c, mu):
     # subtract mean from training data
     m = (Xtrn_c - mu)
     # matrix multiply (m x m.T) to calculate covariance matrix
