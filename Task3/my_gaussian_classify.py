@@ -43,6 +43,8 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     t = time.clock()
     for c in range(26):
         Covs[:, :, c] = my_cov(Xtrn[Ctrn_1d == c])
+        # get mean (mu) for this class
+        # calculate covariance on class basis
 
     print("covariance matrices: %.2fs" % (time.clock() - t))
 
