@@ -77,4 +77,5 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         log_pps[:, c] = log_pp.diagonal().ravel()
         # print(log_pps[:, c])
         print("calculated class #%2d" % c)
+    Cpreds = log_pps.argsort(axis=1)[:, -1]
     return (Cpreds, Ms, Covs)
