@@ -35,6 +35,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # Bayes classification with multivariate Gaussian distributions.
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
+    # define number of dimensions
     d = Xtrn.shape[1]
     # create empty array to hold each test vector prediction
     Cpreds = np.empty((Xtst.shape[0]), dtype=np.int_)
@@ -42,16 +43,24 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     Ms = np.empty((26, d))
     # create empty array to hold each class covariance matrix
     Covs = np.empty((d, d, 26))
+    # create empty array to hold each class covariance matrix inverse
+    # create empty array to hold each class covariance matrix log determinant
 
     # start independent timer for covariance calculation
     t = time.clock()
     for c in range(26):
         # get mean (mu) for this class
         Xtrn_c = Xtrn[Ctrn_1d == c]
+        # write mu to Ms
         Ms[c] = my_mean(Xtrn_c)
-        # calculate covariance on class basis
+        # calculate covariance on class basis, regularise with epsilon
         Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + np.identity(d) * epsilon
 
     print("covariance matrices: %.2fs" % (time.clock() - t))
 
+    # define log posterior probabilities
+        # calculate covariance matrix log determinant
+        # calculate covariance matrix inverse
+        # subtract mean from test vectors
+        # ignoring "+ ln P(C)" assuming uniform prior distribution
     return (Cpreds, Ms, Covs)
