@@ -18,11 +18,11 @@ except Exception:
     print("couldn't data from afs! loading local data...")
 
 # Feature vectors: Convert uint8 to double, and divide by 255
-Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
-Xtst = data['dataset']['test'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
+Xtrn = data['dataset']['train'][0,0]['images'][0,0].astype(dtype=np.float_) / 255.0
+Xtst = data['dataset']['test'][0,0]['images'][0,0].astype(dtype=np.float_) / 255.0
 # Labels : convert float64 to integer, and subtract 1 so that class number starts at 0 rather than 1
-Ctrn = data['dataset']['train'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
-Ctst = data['dataset']['test'][0, 0]['labels'][0, 0].astype(dtype=np.int_) - 1
+Ctrn = data['dataset']['train'][0,0]['labels'][0,0].astype(dtype=np.int_) - 1
+Ctst = data['dataset']['test'][0,0]['labels'][0,0].astype(dtype=np.int_) - 1
 
 kb = [1, 3, 5, 10, 20]
 
