@@ -59,6 +59,8 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     print("covariance matrices: %.2fs" % (time.clock() - t))
 
     # define log posterior probabilities
+    log_pps = np.empty((Xtst.shape[0], 26))
+
         # calculate covariance matrix log determinant
         # calculate covariance matrix inverse
         # subtract mean from test vectors
