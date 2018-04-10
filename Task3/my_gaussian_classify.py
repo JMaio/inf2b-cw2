@@ -49,7 +49,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         Xtrn_c = Xtrn[Ctrn_1d == c]
         Ms[c] = my_mean(Xtrn_c)
         # calculate covariance on class basis
-        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c])
+        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + np.identity(d) * epsilon
 
     print("covariance matrices: %.2fs" % (time.clock() - t))
 
