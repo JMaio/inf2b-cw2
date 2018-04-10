@@ -34,10 +34,12 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # Bayes classification with multivariate Gaussian distributions.
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
-    # create empty array to hold each class covariance matrix
     d = Xtrn.shape[1]
+    # create empty array to hold each test vector prediction
     Cpreds = np.empty((Xtst_b.shape[0]), dtype=np.int_)
+    # create empty array to hold each class mean
     Ms = np.empty((26, d))
+    # create empty array to hold each class covariance matrix
     Covs = np.empty((d, d, 26))
 
     # start independent timer for covariance calculation
