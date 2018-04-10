@@ -23,6 +23,5 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
 
     #YourCode - Bayes classification with multivariate Gaussian distributions.
     mu_trn = my_mean(Xtrn)
-    mu_tst = my_mean(Xtst)
 
     return (Cpreds, Ms, Covs)
