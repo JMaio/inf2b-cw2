@@ -12,6 +12,7 @@ def my_mean(Xtrn):
 
 def my_cov(Xtrn):
     pass
+    mu = my_mean(Xtrn)
 
 
 def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
@@ -26,6 +27,5 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     #  Covs  : D-by-D-by-K ndarray of covariance matrices (dtype=np.float_)
 
     #YourCode - Bayes classification with multivariate Gaussian distributions.
-    mu = my_mean(Xtrn)
 
     return (Cpreds, Ms, Covs)
