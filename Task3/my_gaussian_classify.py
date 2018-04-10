@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def my_mean(m):
+def my_mean(Xtrn):
     # number of features
     N = m.shape[0]
     # sum over all components of each feature
@@ -10,7 +10,7 @@ def my_mean(m):
     return sum_N / N
 
 
-def my_cov(m):
+def my_cov(Xtrn):
     pass
 
 
