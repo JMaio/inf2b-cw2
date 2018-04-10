@@ -11,8 +11,10 @@ def my_mean(Xtrn):
 
 
 def my_cov(Xtrn):
-    pass
     mu = my_mean(Xtrn)
+    m = (Xtrn - mu)
+
+    return np.dot(m, m.T)
 
 
 def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
