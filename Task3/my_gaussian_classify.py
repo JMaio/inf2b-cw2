@@ -10,6 +10,10 @@ def my_mean(m):
     return sum_N / N
 
 
+def my_cov(m):
+    pass
+
+
 def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # Input:
     #   Xtrn : M-by-D ndarray of training data (dtype=np.float_)
