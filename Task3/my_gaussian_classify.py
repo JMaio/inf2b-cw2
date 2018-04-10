@@ -35,8 +35,8 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
     # create empty array to hold each class covariance matrix
-    c_samples = int(Xtrn.shape[0] / 26)
-    Covs = np.empty((c_samples, c_samples, 26))
+    d = Xtrn.shape[1]
+    Covs = np.empty((d, d, 26))
 
     # start independent timer for covariance calculation
     t = time.clock()
