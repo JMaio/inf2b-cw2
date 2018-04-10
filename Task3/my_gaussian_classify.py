@@ -43,10 +43,6 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     Ms = np.empty((26, d))
     # create empty array to hold each class covariance matrix
     Covs = np.empty((d, d, 26))
-    # create empty array to hold each class covariance matrix inverse
-    Cov_invs = np.empty((d, d, 26))
-    # create empty array to hold each class covariance matrix log determinant
-    Cov_logdets = np.empty((26))
 
     # start independent timer for covariance calculation
     t = time.clock()
