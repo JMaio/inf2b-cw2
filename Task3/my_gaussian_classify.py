@@ -11,13 +11,13 @@ def my_mean(Xtrn):
     return sum_N / N
 
 
-def my_cov(Xtrn):
-    mu = my_mean(Xtrn)
-    # m = (Xtrn - mu)
-    # print(m.shape)
-    # n = m[:10]
-    # # return np.dot(m, m.T)
-    # return np.dot(n, n.T)
+def my_cov(Xtrn_c):
+    # get mean (mu) for this class
+    mu = my_mean(Xtrn_c)
+    # subtract mean from training data
+    m = (Xtrn_c - mu)
+    # matrix multiply (m x m.T) to calculate covariance matrix
+    return np.dot(m, m.T)
 
 
 def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
