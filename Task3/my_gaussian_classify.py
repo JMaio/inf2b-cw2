@@ -3,9 +3,9 @@ import numpy as np
 
 def my_mean(Xtrn):
     # number of features
-    N = m.shape[0]
+    N = Xtrn.shape[0]
     # sum over all components of each feature
-    sum_N = np.sum(m, axis=0)
+    sum_N = np.sum(Xtrn, axis=0)
     # divide totals by number of features
     return sum_N / N
 
