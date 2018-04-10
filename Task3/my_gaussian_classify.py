@@ -12,9 +12,11 @@ def my_mean(Xtrn):
 
 def my_cov(Xtrn):
     mu = my_mean(Xtrn)
-    m = (Xtrn - mu)
-
-    return np.dot(m, m.T)
+    # m = (Xtrn - mu)
+    # print(m.shape)
+    # n = m[:10]
+    # # return np.dot(m, m.T)
+    # return np.dot(n, n.T)
 
 
 def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
@@ -29,8 +31,17 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     #  Covs  : D-by-D-by-K ndarray of covariance matrices (dtype=np.float_)
 
     #YourCode - Bayes classification with multivariate Gaussian distributions.
+    # convert training classes into 1D array
+    Ctrn_1d = Ctrn.ravel()
+    # create empty array to hold each class covariance matrix
+    Covs = np.empty((Xtrn.shape[0] / 26, 26))
+
+    for c in range(26):
+        pass
+
     cov = my_cov(Xtrn)
     print(cov)
+    print(cov.shape)
 
 
 
