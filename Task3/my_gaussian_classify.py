@@ -29,5 +29,9 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     #  Covs  : D-by-D-by-K ndarray of covariance matrices (dtype=np.float_)
 
     #YourCode - Bayes classification with multivariate Gaussian distributions.
+    cov = my_cov(Xtrn)
+    print(cov)
+
+
 
     return (Cpreds, Ms, Covs)
