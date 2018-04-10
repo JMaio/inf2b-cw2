@@ -1,5 +1,15 @@
 import numpy as np
 
+
+def my_mean(m):
+    # number of features
+    N = m.shape[0]
+    # sum over all components of each feature
+    sum_N = np.sum(m, axis=0)
+    # divide totals by number of features
+    return sum_N / N
+
+
 def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # Input:
     #   Xtrn : M-by-D ndarray of training data (dtype=np.float_)
