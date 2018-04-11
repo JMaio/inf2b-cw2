@@ -15,7 +15,7 @@ try:
     print("loaded data from afs!")
 except Exception:
     data = scipy.io.loadmat("../data.mat")
-    print("couldn't data from afs! loading local data...")
+    print("couldn't load data from afs! loading local data...")
 
 # Feature vectors: Convert uint8 to double, and divide by 255
 Xtrn = data['dataset']['train'][0, 0]['images'][0, 0].astype(dtype=np.float_) / 255.0
