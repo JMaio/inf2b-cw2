@@ -35,7 +35,7 @@ print("running my_gaussian_classify...")
 (Cpreds, Ms, Covs) = my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon)
 
 # Measure the user time taken, and display it
-print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
+print("done! - time elapsed: %.2f seconds" % time.clock())
 
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)

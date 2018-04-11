@@ -55,7 +55,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         # calculate covariance on class basis, regularise with epsilon
         Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + np.identity(d) * epsilon
 
-    print("covariance matrices: %.2fs" % (time.clock() - t))
+    print("covariance matrices: %.2fs" % time.clock())
 
     # define log posterior probabilities
     log_pps = np.empty((Xtst.shape[0], 26))
