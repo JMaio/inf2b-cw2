@@ -65,6 +65,8 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         cov_inv = np.linalg.inv(Covs[:, :, c])
         # subtract mean from test vectors
         m = (Xtst - Ms[c])
+        # foreach testing vector from above (for loop uses less memory and
+        # does not need to calculate unnecessary off-diagonal values --> faster)
         for (i, v) in enumerate(m):
             # ignoring "+ ln P(C)" assuming uniform prior distribution
             log_pps[i, c] = - 0.5 * (v.dot(cov_inv.dot(v.T)) + cov_logdet)
