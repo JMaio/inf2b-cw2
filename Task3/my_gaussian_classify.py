@@ -68,6 +68,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         m = (Xtst - Ms[c])
         # ignoring "+ ln P(C)" assuming uniform prior distribution
         log_pp = - 0.5 * (m.dot(cov_inv.dot(m.T)) - cov_logdet)
+        for (i, v) in enumerate(m):
         # for (i, v) in enumerate(Xtst):
         #     log_pps[i, c] =
         log_pps[:, c] = log_pp.diagonal().ravel()
