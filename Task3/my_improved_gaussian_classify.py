@@ -71,6 +71,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     Xtst_pca = Xtst.dot(np.array([e1, e2]).T)
 
 ### __________________ continue with gaussian classifier __________________ ###
+    # define log posterior probabilities
+    log_pps = np.empty((Xtst_pca.shape[0], c_n))
 
 
 
