@@ -45,7 +45,8 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # create empty array to hold each class covariance matrix
     Covs = np.empty((d, d, c_n))
 
-    t_cov = time.clock()
+    time.clock()
+
     # foreach class
     for c in range(c_n):
         # get mean (mu) for this class
@@ -55,12 +56,12 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         # calculate covariance on class basis, regularise with epsilon
         Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + np.identity(d) * epsilon
 
+    t_cov = time.clock()
     print("covariance matrices: %.2fs" % t_cov)
 
     # define log posterior probabilities
     log_pps = np.empty((Xtst.shape[0], c_n))
 
-    t_classes = time.clock()
     # foreach class
     for c in range(c_n):
         # calculate log determinant of covariance matrix
@@ -78,6 +79,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         s = ["calculating classes: # %d",
              "                     # %d"]
         print(s[int(bool(c))] % c)
+    t_classes = time.clock() - t_cov
 
     print("classes: %.2fs" % t_classes)
 
