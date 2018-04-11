@@ -27,6 +27,9 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     # create empty array to hold each class covariance matrix
     Covs = np.empty((d, d, c_n))
 
+    # define epsilon as matrix
+    epsil = np.identity(d) * epsilon
+
     # start timer
     time.clock()
 
