@@ -59,9 +59,9 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
 
     # foreach class
     for c in range(26):
-        # calculate covariance matrix log determinant
+        # calculate log determinant of covariance matrix
         cov_logdet = logdet(Covs[:, :, c])
-        # calculate covariance matrix inverse
+        # calculate inverse of covariance matrix
         cov_inv = np.linalg.inv(Covs[:, :, c])
         # subtract mean from test vectors
         m = (Xtst - Ms[c])
