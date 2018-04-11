@@ -127,4 +127,6 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
 
     Cpreds = log_pps_pca.argmax(axis=1)
 
+    # Cpreds = np.abs(Xtst_pca).argmax(axis=1).ravel()
+
     return Cpreds
