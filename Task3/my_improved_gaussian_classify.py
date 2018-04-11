@@ -41,8 +41,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     print("covariance matrices: %.2fs" % t_cov)
 
 # ------------------------ begin improved classifier ------------------------ #
-    eig_vals = np.empty((1, 1, c_n))
-    eig_vecs = np.empty((c_n), dtype=np.float_)
+    eig_vals = np.empty((c_n, d), dtype=np.complex_)
+    eig_vecs = np.empty((d, d, c_n), dtype=np.complex_)
     # apply PCA
     for c in range(c_n):
         eig_val, eig_vec = np.linalg.eig(Covs[:, :, c])
