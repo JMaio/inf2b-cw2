@@ -18,8 +18,9 @@ def my_confusion(Ctrues, Cpreds):
     #           class that was classified as j (dtype=np.int_)
     #   acc : accuracy (i.e. correct classification rate) (type=float)
     #
+    c_n = Ctrues.max() + 1
     # create initial matrix
-    CM = np.zeros((26, 26))
+    CM = np.zeros((c_n, c_n))
 
     # iterate over tuples of (prediction, ground truth)
     for (pred, act) in zip(Cpreds, Ctrues):
