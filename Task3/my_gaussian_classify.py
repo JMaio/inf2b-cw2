@@ -45,11 +45,11 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # create empty array to hold each class covariance matrix
     Covs = np.empty((d, d, c_n))
 
-    # start timer
-    time.clock()
-
     # define epsilon as matrix
     epsil = np.identity(d) * epsilon
+
+    # start timer
+    time.clock()
 
     # foreach class
     for c in range(c_n):
@@ -83,9 +83,9 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         s = ["calculating classes: # %d",
              "                     # %d"]
         print(s[int(bool(c))] % c)
-    t_classes = time.clock() - t_cov
+    t_classes = time.clock()
 
-    print("classes: %.2fs" % t_classes)
+    print("classes: %.2fs" % (t_classes - t_cov))
 
     Cpreds = log_pps.argmax(axis=1)
 
