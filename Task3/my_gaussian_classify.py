@@ -35,7 +35,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # Bayes classification with multivariate Gaussian distributions.
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
-    # define number of dimensions
+    # define number of features / dimensions
     d = Xtrn.shape[1]
     # create empty array to hold each test vector prediction
     Cpreds = np.empty((Xtst.shape[0]), dtype=np.int_)
@@ -46,6 +46,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
 
     # start independent timer for covariance calculation
     t = time.clock()
+    # foreach class
     for c in range(26):
         # get mean (mu) for this class
         Xtrn_c = Xtrn[Ctrn_1d == c]
@@ -59,6 +60,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # define log posterior probabilities
     log_pps = np.empty((Xtst.shape[0], 26))
 
+    # foreach class
     for c in range(26):
         # calculate covariance matrix log determinant
         cov_logdet = logdet(Covs[:, :, c])
