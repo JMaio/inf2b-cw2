@@ -66,9 +66,9 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         cov_inv = np.linalg.inv(Covs[:, :, c])
         # subtract mean from test vectors
         m = (Xtst - Ms[c])
-        # ignoring "+ ln P(C)" assuming uniform prior distribution
-        log_pp = - 0.5 * (m.dot(cov_inv.dot(m.T)) - cov_logdet)
         for (i, v) in enumerate(m):
+            # ignoring "+ ln P(C)" assuming uniform prior distribution
+            log_pps[i, c] = - 0.5 * (v.dot(cov_inv.dot(v.T)) + cov_logdet)
         # for (i, v) in enumerate(Xtst):
         #     log_pps[i, c] =
         log_pps[:, c] = log_pp.diagonal().ravel()
