@@ -1,4 +1,9 @@
 import numpy as np
+# import functions from classifier
+from my_gaussian_classify import *
+# import logdet function from coursework
+from logdet import *
+
 
 def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     # Input:
