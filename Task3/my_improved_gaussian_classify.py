@@ -57,6 +57,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     # returns max eigenvalue position per class
     # print(np.abs(eig_vals).argmax(axis=1))
     # print(np.abs(eig_vals[0, :3]))
+    # class max eigenvalues
+    c_eigvec = np.empty((c_n, d), dtype=np.complex_)
     print(eig_vals[max_row_i, np.arange(eig_vals.shape[0])])
     print(max_row_i)
     print(max_col_i)
