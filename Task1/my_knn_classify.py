@@ -10,11 +10,11 @@ def my_sq_dist(Xtrn, Xtst):
     #     Xtst^2 = np.sum(Xtst ** 2, axis=1)                # lengths of all test vectors
     #     Xtrn * Xtst = np.dot(Xtrn, Xtst.T)                # matrix product of sums of products
 
-    t = time.clock()
+    # t = time.clock()
     m = np.sum(Xtst**2, axis=1)[:, np.newaxis] \
       + np.sum(Xtrn**2, axis=1) \
       - 2 * np.dot(Xtst, Xtrn.T)
-    print("distances: %.2fs" % (time.clock() - t))
+    print("distances: %.2fs" % time.clock())
     return m
 
 
