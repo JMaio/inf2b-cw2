@@ -17,7 +17,7 @@ def my_cov(Xtrn_c, mu):
     m = (Xtrn_c - mu)
     # matrix multiply (m.T x m) and divide by occurrences to calculate covariance matrix
     cov = np.dot(m.T, m) / Xtrn_c.shape[0]
-    # by transposing, D-by-D dimensions are maintained for this array
+    # (by transposing, D-by-D dimensions are maintained for this array)
     return cov
 
 
