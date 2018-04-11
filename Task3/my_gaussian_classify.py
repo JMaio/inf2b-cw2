@@ -48,6 +48,9 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # start timer
     time.clock()
 
+    # define epsilon as matrix
+    epsil = np.identity(d) * epsilon
+
     # foreach class
     for c in range(c_n):
         # get mean (mu) for this class
@@ -55,7 +58,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         # write mu to Ms
         Ms[c] = my_mean(Xtrn_c)
         # calculate covariance on class basis, regularise with epsilon
-        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + np.identity(d) * epsilon
+        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + epsil
 
     t_cov = time.clock()
     print("covariance matrices: %.2fs" % t_cov)
