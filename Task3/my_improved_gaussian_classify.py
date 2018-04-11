@@ -44,6 +44,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
 # ________________________ begin improved classifier ________________________ #
     # create dedicated array to hold each pca class mean
     Ms_pca = np.empty((c_n, d))
+    # create dedicated array to hold each pca class covariance matrix
+    Covs_pca = np.empty((d, d, c_n))
 
 ### ___________________ find eigenvalues & eigenvectors ___________________ ###
     eig_vals = np.empty((c_n, d), dtype=np.complex_)
