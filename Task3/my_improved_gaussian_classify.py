@@ -41,6 +41,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     print("covariance matrices: %.2fs" % t_cov)
 
 # ------------------------ begin improved classifier ------------------------ #
+
+### ------------------- find eigenvalues & eigenvectors ------------------- ###
     eig_vals = np.empty((c_n, d), dtype=np.complex_)
     eig_vecs = np.empty((d, d, c_n), dtype=np.complex_)
     # apply PCA
@@ -73,5 +75,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     print("axes:")
     print(e1)
     print(e2)
+### ------------------- find eigenvalues & eigenvectors ------------------- ###
+
+
 
     return Cpreds
