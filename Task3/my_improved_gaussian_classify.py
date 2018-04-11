@@ -5,7 +5,7 @@ from my_gaussian_classify import *
 from logdet import *
 
 
-def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=1e-10,
+def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=None, epsilon=1e-10,
                                   epsilon_pca=1e-10):
     # Input:
     #   Xtrn : M-by-D ndarray of training data (dtype=np.float_)
