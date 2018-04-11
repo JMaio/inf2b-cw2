@@ -84,13 +84,42 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     # create dedicated array to hold each pca class covariance matrix
     Covs_pca = np.empty((dims, dims, c_n), dtype=np.complex_)
     # define log posterior probabilities
-    log_pps = np.empty((Xtst_pca.shape[0], c_n))
+    log_pps_pca = np.empty((Xtst_pca.shape[0], c_n), dtype=np.complex_)
 
+    # foreach class
+    for c in range(c_n):
+        ### recompute class mean
+        # get mean (mu) for this class
+        Xtrn_pca_c = Xtrn_pca[Ctrn_1d == c]
+        # write mu to Ms_pca
+        Ms_pca[c] = my_mean(Xtrn_pca_c)
+        # recalculate covariance matrix
+        Covs_pca[:, :, c] = my_cov(Xtrn_pca_c, Ms_pca[c]) + epsil_pca
 
     t_cov_pca = time.clock()
     print("covariance matrices (%dx%d)x%d: %.2fs" % (dims, dims, c_n, t_cov_pca - t_trans))
 
+    # foreach class
+    for c in range(c_n):
+        # calculate log determinant of covariance matrix
+        cov_logdet_pca = logdet(Covs_pca[:, :, c])
+        # calculate inverse of covariance matrix
+        cov_inv_pca = np.linalg.inv(Covs_pca[:, :, c])
+        # subtract mean from test vectors
+        m_pca = (Xtst_pca - Ms_pca[c])
+        # foreach testing vector from above (for loop uses less memory and
+        # does not need to calculate unnecessary off-diagonal values --> faster)
+        for (i, v) in enumerate(m_pca):
+            # ignoring "+ ln P(C)" assuming uniform prior distribution
+            log_pps_pca[i, c] = - 0.5 * (v.dot(cov_inv_pca.dot(v.T)) + cov_logdet_pca)
+        # give feedback on class calculation (pretty printing included)
+        s = ["calculating classes: # %d",
+             "                     # %d"]
+        print(s[int(bool(c))] % c)
     t_classes_pca = time.clock()
 
     print("classes: %.2fs" % (t_classes_pca - t_cov_pca))
+
+    Cpreds = log_pps_pca.argmax(axis=1)
+
     return Cpreds
