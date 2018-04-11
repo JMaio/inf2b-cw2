@@ -16,10 +16,17 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=None, epsilon=1e-10,
 
     # define number of classes
     c_n = Ctrn.max() + 1
-    if dims > c_n:
-        print(
-"dims=%d: cannot go over %d dimensions! \n\
-         using dims=%d instead" % (dims, c_n, c_n))
+    # define custom logic for handling dimensionality
+    if not dims:
+        print("""
+dims undefined: setting to max (dims=%d)
+         """ % (c_n))
+        dims = c_n
+    elif dims > c_n:
+        print("""
+dims=%d: cannot go over %d dimensions!
+         using dims=%d instead
+         """ % (dims, c_n, c_n))
         dims = c_n
 # ________________ section identical to my_gaussian_classify ________________ #
     ## Bayes classification with multivariate Gaussian distributions
