@@ -5,11 +5,11 @@ from logdet import *
 
 
 def my_mean(Xtrn_c):
-    # number of features
+    # number of occurreces in class
     N = Xtrn_c.shape[0]
     # sum over all components of each feature
     sum_N = np.sum(Xtrn_c, axis=0)
-    # divide totals by number of features
+    # divide totals by number of occurreces
     return sum_N / N
 
 
