@@ -83,9 +83,9 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         s = ["calculating classes: # %d",
              "                     # %d"]
         print(s[int(bool(c))] % c)
-    t_classes = time.clock() - t_cov
+    t_classes = time.clock()
 
-    print("classes: %.2fs" % t_classes)
+    print("classes: %.2fs" % (t_classes - t_cov))
 
     Cpreds = log_pps.argmax(axis=1)
 
