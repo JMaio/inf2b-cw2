@@ -45,6 +45,7 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     # create empty array to hold each class covariance matrix
     Covs = np.empty((d, d, c_n))
 
+    # start timer
     time.clock()
 
     # foreach class
