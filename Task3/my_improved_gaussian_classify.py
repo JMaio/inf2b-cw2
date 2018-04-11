@@ -49,7 +49,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
         # print(eig_val)
         # print(eig_vec.astype(np.float_))
         eig_vals[c] = eig_val
-        eig_vecs[c] = eig_vec
+        eig_vecs[:, :, c] = eig_vec
 
     # print(np.argsort(eig_vals.max(axis=1)))
     # print(np.sort(eig_vals.max(axis=1)))
