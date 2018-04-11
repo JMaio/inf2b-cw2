@@ -46,10 +46,6 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     print("covariance matrices (%dx%d)x%d: %.2fs" % (d, d, c_n, t_cov))
 
 # ________________________ begin improved classifier ________________________ #
-    # create dedicated array to hold each pca class mean
-    Ms_pca = np.empty((c_n, d))
-    # create dedicated array to hold each pca class covariance matrix
-    Covs_pca = np.empty((d, d, c_n))
 
 ### ___________________ find eigenvalues & eigenvectors ___________________ ###
     eig_vals = np.empty((c_n, d), dtype=np.complex_)
@@ -75,6 +71,10 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     Xtst_pca = Xtst.dot(np.array([e1, e2]).T)
 
 ### __________________ continue with gaussian classifier __________________ ###
+    # create dedicated array to hold each pca class mean
+    Ms_pca = np.empty((c_n, dims), dtype=np.complex_)
+    # create dedicated array to hold each pca class covariance matrix
+    Covs_pca = np.empty((dims, dims, c_n), dtype=np.complex_)
     # define log posterior probabilities
     log_pps = np.empty((Xtst_pca.shape[0], c_n))
 
