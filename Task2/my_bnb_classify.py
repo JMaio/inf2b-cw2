@@ -29,7 +29,8 @@ def my_bnb_classify(Xtrn, Ctrn, Xtst, threshold):
         class_prob[c] = np.true_divide(Xtrn_b[Ctrn_1d == c, :].sum(axis=0),
                                        Ctrn[Ctrn_1d == c].shape[0])
 
-    Cpreds = np.zeros((Xtst_b.shape[0]), dtype=np.int_)
+    # create empty array to hold each test vector prediction
+    Cpreds = np.empty((Xtst_b.shape[0]), dtype=np.int_)
 
     # iterate through test vectors and remember their original position
     for (i, v) in enumerate(Xtst_b):
