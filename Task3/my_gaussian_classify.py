@@ -5,11 +5,11 @@ from logdet import *
 
 
 def my_mean(Xtrn_c):
-    # number of features
+    # number of occurreces in class
     N = Xtrn_c.shape[0]
     # sum over all components of each feature
     sum_N = np.sum(Xtrn_c, axis=0)
-    # divide totals by number of features
+    # divide totals by number of occurreces
     return sum_N / N
 
 
@@ -33,32 +33,41 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     #  Ms    : D-by-K ndarray of mean vectors (dtype=np.float_)
     #  Covs  : D-by-D-by-K ndarray of covariance matrices (dtype=np.float_)
 
-    # Bayes classification with multivariate Gaussian distributions.
+    ## Bayes classification with multivariate Gaussian distributions
+    # define number of classes
+    c_n = Ctrn.max() + 1
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
     # define number of features / dimensions
     d = Xtrn.shape[1]
     # create empty array to hold each class mean
-    Ms = np.empty((26, d))
+    Ms = np.empty((c_n, d))
     # create empty array to hold each class covariance matrix
-    Covs = np.empty((d, d, 26))
+    Covs = np.empty((d, d, c_n))
+
+    # define epsilon as matrix
+    epsil = np.identity(d) * epsilon
+
+    # start timer
+    time.clock()
 
     # foreach class
-    for c in range(26):
+    for c in range(c_n):
         # get mean (mu) for this class
         Xtrn_c = Xtrn[Ctrn_1d == c]
         # write mu to Ms
         Ms[c] = my_mean(Xtrn_c)
         # calculate covariance on class basis, regularise with epsilon
-        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + np.identity(d) * epsilon
+        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + epsil
 
-    print("covariance matrices: %.2fs" % time.clock())
+    t_cov = time.clock()
+    print("covariance matrices: %.2fs" % t_cov)
 
     # define log posterior probabilities
-    log_pps = np.empty((Xtst.shape[0], 26))
+    log_pps = np.empty((Xtst.shape[0], c_n))
 
     # foreach class
-    for c in range(26):
+    for c in range(c_n):
         # calculate log determinant of covariance matrix
         cov_logdet = logdet(Covs[:, :, c])
         # calculate inverse of covariance matrix
@@ -74,6 +83,9 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         s = ["calculating classes: # %d",
              "                     # %d"]
         print(s[int(bool(c))] % c)
+    t_classes = time.clock()
+
+    print("classes: %.2fs" % (t_classes - t_cov))
 
     Cpreds = log_pps.argmax(axis=1)
 
