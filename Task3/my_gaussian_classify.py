@@ -37,8 +37,6 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     Ctrn_1d = Ctrn.ravel()
     # define number of features / dimensions
     d = Xtrn.shape[1]
-    # create empty array to hold each test vector prediction
-    Cpreds = np.empty((Xtst.shape[0]), dtype=np.int_)
     # create empty array to hold each class mean
     Ms = np.empty((26, d))
     # create empty array to hold each class covariance matrix
