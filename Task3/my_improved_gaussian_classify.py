@@ -43,7 +43,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
         Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + epsil
 
     t_cov = time.clock()
-    print("covariance matrices: %.2fs" % t_cov)
+    print("covariance matrices (%dx%d)x%d: %.2fs" % (d, d, c_n, t_cov))
 
 # ________________________ begin improved classifier ________________________ #
     # create dedicated array to hold each pca class mean
@@ -79,5 +79,6 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     log_pps = np.empty((Xtst_pca.shape[0], c_n))
 
 
+    print("covariance matrices (%dx%d)x%d: %.2fs" % (dims, dims, c_n, t_cov_pca - t_trans))
 
     return Cpreds
