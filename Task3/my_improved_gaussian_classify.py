@@ -59,6 +59,9 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     # print(np.abs(eig_vals[0, :3]))
     # class max eigenvalues
     c_eigvec = np.empty((c_n, d), dtype=np.complex_)
+    # get column / row of 2 max eigenvectors
+    max_row_i = np.abs(eig_vals).argmax(axis=1)
+    max_col_i = eig_vals[max_row_i, np.arange(eig_vals.shape[0])].argsort().ravel()[:-3:-1]
     print(eig_vals[max_row_i, np.arange(eig_vals.shape[0])])
     print(max_row_i)
     print(max_col_i)
