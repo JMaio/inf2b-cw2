@@ -65,7 +65,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     c_eigvec = np.empty((c_n, d), dtype=np.complex_)
     # get column & row of 2 max eigenvectors
     max_row_i = np.abs(eig_vals).argmax(axis=1)
-    max_col_i = eig_vals[max_row_i, np.arange(eig_vals.shape[0])].argsort().ravel()[:-3:-1]
+    max_col_i = eig_vals[max_row_i, np.arange(eig_vals.shape[0])].argsort().ravel()[:-(dims + 1):-1]
 
     # set e1, e2 to eigenvectors with 1st and 2nd largest associated eigenvalues
     (e1, e2) = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
