@@ -27,6 +27,7 @@ dims=%d: cannot go over %d dimensions!
          using dims=%d instead
          """ % (dims, c_n, c_n))
         dims = c_n
+
 # ________________ section identical to my_gaussian_classify ________________ #
     ## Bayes classification with multivariate Gaussian distributions
     # convert training classes into 1D array
