@@ -64,13 +64,14 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     max_col_i = eig_vals[max_row_i, np.arange(eig_vals.shape[0])].argsort().ravel()[:-(dims + 1):-1]
 
     # set e1, e2 to eigenvectors with 1st and 2nd largest associated eigenvalues
-    (e1, e2) = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
+    eig_vecs_pca = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
+
     t_eig = time.clock()
     print("eigenvectors: %.2fs" % (t_eig - t_cov))
 
 ### ________________________ apply transformations ________________________ ###
-    Xtrn_pca = Xtrn.dot(np.array([e1, e2]).T)
-    Xtst_pca = Xtst.dot(np.array([e1, e2]).T)
+    Xtrn_pca = Xtrn.dot(eig_vecs_pca.T)
+    Xtst_pca = Xtst.dot(eig_vecs_pca.T)
 
 ### __________________ continue with gaussian classifier __________________ ###
     # create dedicated array to hold each pca class mean
