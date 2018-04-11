@@ -28,7 +28,6 @@ epsilon = 0.01
 
 # Prepare measuring time
 print("starting timer...")
-t0 = time.clock()
 
 # Run Gaussian classification
 print("running my_gaussian_classify...")

@@ -77,6 +77,8 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
              "                     # %d"]
         print(s[int(bool(c))] % c)
 
+    print("classes: %.2f" % time.clock())
+
     Cpreds = log_pps.argmax(axis=1)
 
     return (Cpreds, Ms, Covs)
