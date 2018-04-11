@@ -39,8 +39,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
         Xtrn_c = Xtrn[Ctrn_1d == c]
         # write mu to Ms
         Ms[c] = my_mean(Xtrn_c)
-        # calculate covariance on class basis, (no regularisation)
-        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c])
+        # calculate covariance on class basis, regularise with epsilon
+        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c]) + epsil
 
     t_cov = time.clock()
     print("covariance matrices: %.2fs" % t_cov)
