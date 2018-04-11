@@ -14,10 +14,15 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
-# ________________ section identical to my_gaussian_classify ________________ #
-    ## Bayes classification with multivariate Gaussian distributions
     # define number of classes
     c_n = Ctrn.max() + 1
+    if dims > c_n:
+        print(
+"dims=%d: cannot go over %d dimensions! \n\
+         using dims=%d instead" % (dims, c_n, c_n))
+        dims = c_n
+# ________________ section identical to my_gaussian_classify ________________ #
+    ## Bayes classification with multivariate Gaussian distributions
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
     # define number of features / dimensions
