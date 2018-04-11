@@ -42,7 +42,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
 
 # ------------------------ begin improved classifier ------------------------ #
     eig_vals = np.empty((1, 1, c_n))
-    eig_vecs = np.empty((c_n))
+    eig_vecs = np.empty((c_n), dtype=np.float_)
     # apply PCA
     for c in range(c_n):
         eig_val, eig_vec = np.linalg.eig(Covs[:, :, c])
