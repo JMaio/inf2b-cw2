@@ -34,7 +34,7 @@ def my_knn_classify(Xtrn, Ctrn, Xtst, Ks):
     d = my_sq_dist(Xtrn, Xtst)
     t = time.clock()
 
-    d = np.argsort(d, kind='quicksort')
+    d = np.argsort(d)
     print("sort: %.2fs" % (time.clock() - t))
 
     # foreach in Ks, calculate k nearest neighbour classification
