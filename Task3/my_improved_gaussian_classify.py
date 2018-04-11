@@ -46,9 +46,17 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     # apply PCA
     for c in range(c_n):
         eig_val, eig_vec = np.linalg.eig(Covs[:, :, c])
-        print(eig_val)
-        print(eig_vec)
+        # print(eig_val)
+        # print(eig_vec.astype(np.float_))
         eig_vals[c] = eig_val
         eig_vecs[c] = eig_vec
+
+    # print(np.argsort(eig_vals.max(axis=1)))
+    # print(np.sort(eig_vals.max(axis=1)))
+
+    # returns max eigenvalue position per class
+    # print(np.abs(eig_vals).argmax(axis=1))
+    # print(np.abs(eig_vals[0, :3]))
+    # (ax1, ax2) = eig_vecs[np.argsort(eig_vals.max(axis=1))[-2:].ravel()]
 
     return Cpreds
