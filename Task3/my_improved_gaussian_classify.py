@@ -83,7 +83,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
 
 ### __________________ continue with gaussian classifier __________________ ###
     # define epsilon_pca as matrix
-    epsil_pca = np.identity(dims) * epsilon
+    epsil_pca = np.identity(dims) * epsilon_pca
     # create dedicated array to hold each pca class mean
     Ms_pca = np.empty((c_n, dims), dtype=np.complex_)
     # create dedicated array to hold each pca class covariance matrix
