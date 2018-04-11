@@ -12,6 +12,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     #   Xtst : N-by-D ndarray of test data (dtype=np.float_)
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
+
 # ________________ section identical to my_gaussian_classify ________________ #
     ## Bayes classification with multivariate Gaussian distributions
     # define number of classes
@@ -65,7 +66,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
 
     print(e1)
     print(e2)
-### _______________________ apply transformations _______________________ ###
+### ________________________ apply transformations ________________________ ###
+### __________________ continue with gaussian classifier __________________ ###
 
 
 
