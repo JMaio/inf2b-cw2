@@ -33,18 +33,20 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     #  Ms    : D-by-K ndarray of mean vectors (dtype=np.float_)
     #  Covs  : D-by-D-by-K ndarray of covariance matrices (dtype=np.float_)
 
-    # Bayes classification with multivariate Gaussian distributions.
+    ## Bayes classification with multivariate Gaussian distributions
+    # define number of classes
+    c_n = Ctrn.max() + 1
     # convert training classes into 1D array
     Ctrn_1d = Ctrn.ravel()
     # define number of features / dimensions
     d = Xtrn.shape[1]
     # create empty array to hold each class mean
-    Ms = np.empty((26, d))
+    Ms = np.empty((c_n, d))
     # create empty array to hold each class covariance matrix
-    Covs = np.empty((d, d, 26))
+    Covs = np.empty((d, d, c_n))
 
     # foreach class
-    for c in range(26):
+    for c in range(c_n):
         # get mean (mu) for this class
         Xtrn_c = Xtrn[Ctrn_1d == c]
         # write mu to Ms
@@ -55,10 +57,10 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
     print("covariance matrices: %.2fs" % time.clock())
 
     # define log posterior probabilities
-    log_pps = np.empty((Xtst.shape[0], 26))
+    log_pps = np.empty((Xtst.shape[0], c_n))
 
     # foreach class
-    for c in range(26):
+    for c in range(c_n):
         # calculate log determinant of covariance matrix
         cov_logdet = logdet(Covs[:, :, c])
         # calculate inverse of covariance matrix
