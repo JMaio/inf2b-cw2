@@ -68,10 +68,11 @@ def my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon):
         for (i, v) in enumerate(m):
             # ignoring "+ ln P(C)" assuming uniform prior distribution
             log_pps[i, c] = - 0.5 * (v.dot(cov_inv.dot(v.T)) + cov_logdet)
-        # for (i, v) in enumerate(Xtst):
-        #     log_pps[i, c] =
-        log_pps[:, c] = log_pp.diagonal().ravel()
-        # print(log_pps[:, c])
-        print("calculated class #%2d" % c)
+        # give feedback on class calculation (pretty printing included)
+        s = ["calculating classes: # %d",
+             "                     # %d"]
+        print(s[int(bool(c))] % c)
+
     Cpreds = log_pps.argmax(axis=1)
+
     return (Cpreds, Ms, Covs)
