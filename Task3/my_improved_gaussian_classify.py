@@ -5,8 +5,8 @@ from my_gaussian_classify import *
 from logdet import *
 
 
-def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
-                                  epsilon_pca=0.01):
+def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=None, epsilon=1e-10,
+                                  epsilon_pca=1e-10):
     # Input:
     #   Xtrn : M-by-D ndarray of training data (dtype=np.float_)
     #   Ctrn : M-by-1 ndarray of labels for Xtrn (dtype=np.int_)
@@ -14,13 +14,20 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
+# ________________ custom logic for handling dimensionality _________________ #
     # define number of classes
     c_n = Ctrn.max() + 1
-    if dims > c_n:
-        print(
-"dims=%d: cannot go over %d dimensions! \n\
-         using dims=%d instead" % (dims, c_n, c_n))
+
+    if not dims:
+        print("dims undefined: setting to max (dims=%d)" % (c_n))
         dims = c_n
+    elif dims > c_n:
+        print("""
+dims=%d: cannot go over %d dimensions!
+         using dims=%d instead
+         """ % (dims, c_n, c_n))
+        dims = c_n
+
 # ________________ section identical to my_gaussian_classify ________________ #
     ## Bayes classification with multivariate Gaussian distributions
     # convert training classes into 1D array
