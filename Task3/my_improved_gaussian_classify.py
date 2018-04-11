@@ -12,7 +12,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     #   Xtst : N-by-D ndarray of test data (dtype=np.float_)
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
-# --------------------- similar to my_gaussian_classify --------------------- #
+# ________________ section identical to my_gaussian_classify ________________ #
     ## Bayes classification with multivariate Gaussian distributions
     # define number of classes
     c_n = Ctrn.max() + 1
@@ -40,9 +40,9 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     t_cov = time.clock()
     print("covariance matrices: %.2fs" % t_cov)
 
-# ------------------------ begin improved classifier ------------------------ #
+# ________________________ begin improved classifier ________________________ #
 
-### ------------------- find eigenvalues & eigenvectors ------------------- ###
+### ___________________ find eigenvalues & eigenvectors ___________________ ###
     eig_vals = np.empty((c_n, d), dtype=np.complex_)
     eig_vecs = np.empty((d, d, c_n), dtype=np.complex_)
     # apply PCA
@@ -63,7 +63,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
 
     print(e1)
     print(e2)
-### ------------------- find eigenvalues & eigenvectors ------------------- ###
+### _______________________ apply transformations _______________________ ###
 
 
 
