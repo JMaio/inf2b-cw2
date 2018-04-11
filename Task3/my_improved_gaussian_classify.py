@@ -67,6 +67,9 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     print(e1)
     print(e2)
 ### ________________________ apply transformations ________________________ ###
+    Xtrn_pca = Xtrn.dot(np.array([e1, e2]).T)
+    Xtst_pca = Xtst.dot(np.array([e1, e2]).T)
+
 ### __________________ continue with gaussian classifier __________________ ###
 
 
