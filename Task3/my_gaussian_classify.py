@@ -3,6 +3,7 @@ import time
 # import logdet function from coursework
 from logdet import *
 
+
 def my_mean(Xtrn_c):
     # number of features
     N = Xtrn_c.shape[0]
