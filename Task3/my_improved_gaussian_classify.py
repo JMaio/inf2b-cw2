@@ -73,6 +73,9 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     Xtrn_pca = Xtrn.dot(eig_vecs_pca.T)
     Xtst_pca = Xtst.dot(eig_vecs_pca.T)
 
+    t_trans = time.clock()
+    print("PCA transforms: %.2fs" % (t_trans - t_eig))
+
 ### __________________ continue with gaussian classifier __________________ ###
     # create dedicated array to hold each pca class mean
     Ms_pca = np.empty((c_n, dims), dtype=np.complex_)
@@ -82,6 +85,10 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     log_pps = np.empty((Xtst_pca.shape[0], c_n))
 
 
+    t_cov_pca = time.clock()
     print("covariance matrices (%dx%d)x%d: %.2fs" % (dims, dims, c_n, t_cov_pca - t_trans))
 
+    t_classes_pca = time.clock()
+
+    print("classes: %.2fs" % (t_classes_pca - t_cov_pca))
     return Cpreds
