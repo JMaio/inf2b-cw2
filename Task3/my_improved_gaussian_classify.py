@@ -12,7 +12,34 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     #   Xtst : N-by-D ndarray of test data (dtype=np.float_)
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
+# --------------------- similar to my_gaussian_classify --------------------- #
+    ## Bayes classification with multivariate Gaussian distributions
+    # define number of classes
+    c_n = Ctrn.max() + 1
+    # convert training classes into 1D array
+    Ctrn_1d = Ctrn.ravel()
+    # define number of features / dimensions
+    d = Xtrn.shape[1]
+    # create empty array to hold each class mean
+    Ms = np.empty((c_n, d))
+    # create empty array to hold each class covariance matrix
+    Covs = np.empty((d, d, c_n))
 
-    #YourCode
+    # start timer
+    time.clock()
+
+    # foreach class
+    for c in range(c_n):
+        # get mean (mu) for this class
+        Xtrn_c = Xtrn[Ctrn_1d == c]
+        # write mu to Ms
+        Ms[c] = my_mean(Xtrn_c)
+        # calculate covariance on class basis, (no regularisation)
+        Covs[:, :, c] = my_cov(Xtrn_c, Ms[c])
+
+    t_cov = time.clock()
+    print("covariance matrices: %.2fs" % t_cov)
+
+# ------------------------ begin improved classifier ------------------------ #
 
     return Cpreds
