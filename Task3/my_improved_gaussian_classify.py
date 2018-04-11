@@ -49,33 +49,18 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     for c in range(c_n):
         # find class eigenvalues, eigenvectors
         eig_val, eig_vec = np.linalg.eig(Covs[:, :, c])
-        # print(eig_val)
-        # print(eig_vec.astype(np.float_))
         eig_vals[c] = eig_val
         eig_vecs[:, :, c] = eig_vec
 
-    # print(np.argsort(eig_vals.max(axis=1)))
-    # print(np.sort(eig_vals.max(axis=1)))
-
-    # returns max eigenvalue position per class
-    # print(np.abs(eig_vals).argmax(axis=1))
-    # print(np.abs(eig_vals[0, :3]))
     # class max eigenvalues
     c_eigvec = np.empty((c_n, d), dtype=np.complex_)
-    # get column / row of 2 max eigenvectors
     # get column & row of 2 max eigenvectors
     max_row_i = np.abs(eig_vals).argmax(axis=1)
     max_col_i = eig_vals[max_row_i, np.arange(eig_vals.shape[0])].argsort().ravel()[:-3:-1]
-    print(eig_vals[max_row_i, np.arange(eig_vals.shape[0])])
-    print(max_row_i)
-    print(max_col_i)
 
-    print(max_row_i[max_col_i])
     # set e1, e2 to eigenvectors with 1st and 2nd largest associated eigenvalues
     (e1, e2) = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
 
-    # (ax1, ax2) = eig_vecs[np.argsort(eig_vals.max(axis=1))[-2:].ravel()]
-    print("axes:")
     print(e1)
     print(e2)
 ### ------------------- find eigenvalues & eigenvectors ------------------- ###
