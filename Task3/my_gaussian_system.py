@@ -35,14 +35,19 @@ print("running my_gaussian_classify...")
 (Cpreds, Ms, Covs) = my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon)
 
 # Measure the user time taken, and display it
-print("done! - time elapsed: %.2f seconds" % (time.clock() - t0))
+print("done! - time elapsed: %.2f seconds" % time.clock())
 
-#YourCode - Get a confusion matrix and accuracy
+# Get a confusion matrix and accuracy
+CM, acc = my_confusion(Ctst, Cpreds)
 
-#YourCode - Save the confusion matrix as "Task3/cm.mat"
-
-#YourCode - Save the mean vector and covariance matrix for class 26,
-#           i.e. save Mu(:,25) and Cov(:,:,25) as "Task3/m26.mat" and
-#           "Task3/cov26.mat", respectively
+# Save the confusion matrix as "Task3/cm.mat"
+scipy.io.savemat("cm.mat", {'cm': CM}, oned_as='row')
+# Save the mean vector matrix...
+scipy.io.savemat("m26.mat", {'m26': Ms[25]}, oned_as='row')
+# ...and covariance matrix for class 26
+scipy.io.savemat("cov26.mat", {'cov26': Covs[:, :, 25]}, oned_as='row')
 
 #YourCode - Display the required information - N, Nerrs, acc
+N = Xtst.shape[0]
+print("N = %d, Nerrs = %4d, acc = %.2f%%" \
+    % (N, N * (1 - acc), acc*100))
