@@ -77,6 +77,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=2, epsilon=0.01,
     print("PCA transforms: %.2fs" % (t_trans - t_eig))
 
 ### __________________ continue with gaussian classifier __________________ ###
+    # define epsilon_pca as matrix
+    epsil_pca = np.identity(dims) * epsilon
     # create dedicated array to hold each pca class mean
     Ms_pca = np.empty((c_n, dims), dtype=np.complex_)
     # create dedicated array to hold each pca class covariance matrix
