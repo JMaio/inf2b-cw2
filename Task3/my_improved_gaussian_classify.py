@@ -46,6 +46,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     # apply PCA
     for c in range(c_n):
         eig_val, eig_vec = np.linalg.eig(Covs[:, :, c])
+        print(eig_val)
+        print(eig_vec)
         eig_vals[c] = eig_val
         eig_vecs[c] = eig_vec
 
