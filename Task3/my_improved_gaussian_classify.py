@@ -64,8 +64,6 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
     # set e1, e2 to eigenvectors with 1st and 2nd largest associated eigenvalues
     (e1, e2) = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
 
-    print(e1)
-    print(e2)
 ### ________________________ apply transformations ________________________ ###
     Xtrn_pca = Xtrn.dot(np.array([e1, e2]).T)
     Xtst_pca = Xtst.dot(np.array([e1, e2]).T)
