@@ -72,8 +72,8 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst):
 
     print(max_row_i[max_col_i])
     # set e1, e2 to eigenvectors with 1st and 2nd largest associated eigenvalues
+    (e1, e2) = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
 
-    (e1, e2) = eig_vecs[:, max_row_i[max_col_i], max_col_i]
     # (ax1, ax2) = eig_vecs[np.argsort(eig_vals.max(axis=1))[-2:].ravel()]
     print("axes:")
     print(e1)
