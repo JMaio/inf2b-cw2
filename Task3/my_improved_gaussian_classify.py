@@ -14,9 +14,10 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=None, epsilon=1e-10,
     # Output:
     #  Cpreds : N-by-L ndarray of predicted labels for Xtst (dtype=np.int_)
 
+# ________________ custom logic for handling dimensionality _________________ #
     # define number of classes
     c_n = Ctrn.max() + 1
-    # define custom logic for handling dimensionality
+
     if not dims:
         print("""
 dims undefined: setting to max (dims=%d)
