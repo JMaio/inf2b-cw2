@@ -31,7 +31,7 @@ time.clock()
 ## Using PCA to improve the gaussian classifier
 # Cpreds = my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon)
 print("running my_improved_gaussian_classify...")
-Cpreds = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=10, epsilon=0.02,
+Cpreds = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=26, epsilon=0.01,
                                        epsilon_pca=0.01)
 
 # Measure the user time taken, and display it
