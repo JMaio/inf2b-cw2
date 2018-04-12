@@ -66,7 +66,7 @@ if args.e:
         e = 11
         print("experiment number not valid! running default: #%d" % (e + 1))
     dims, epsilon, epsilon_pca = experiments[e]
-    print("running experiment #%2d: dims=%s, ε=%s"
+    print("running experiment #%2d: dims=%s, epsilon=%s"
         % (args.e, str(dims), str(epsilon)))
     (dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims,
                                 epsilon=epsilon, epsilon_pca=epsilon_pca)
@@ -92,5 +92,5 @@ scipy.io.savemat("cm_improved.mat", {'cm': CM}, oned_as='row')
 
 #YourCode - Display information if any
 N = Xtst.shape[0]
-print("dims = %2d, ε = %.0e, N = %d, Nerrs = %4d, acc = %.2f%%" \
+print("dims = %2d, epsilon = %.0e, N = %d, Nerrs = %4d, acc = %.2f%%" \
     % (dims, epsilon, N, N * (1 - acc), acc*100))
