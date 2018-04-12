@@ -19,7 +19,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=None, epsilon=1e-10,
     c_n = Ctrn.max() + 1
 
     if not dims:
-        print("dims undefined: setting to max (dims=%d)" % (c_n))
+        print("dims undefined! setting to max (dims=%d)" % (c_n))
         dims = c_n
     elif dims > c_n:
         print("""
