@@ -41,9 +41,10 @@ time.clock()
 #  - dims=None : specify dimensions to reduce to (max 26)
 #  - epsilon=1e-10 : epsilon to be used in covariance matrices
 #  - epsilon_pca=1e-10 : epsilon to be used (after pca) in covariance matrices
-Cpreds = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst)
 print("running experiment #%2d: dims=%s, ε=%s"
                 % (args.e, str(dims), str(epsilon)))
+(dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims,
+                                       epsilon=epsilon, epsilon_pca=epsilon_pca)
 
 # Measure the user time taken, and display it
 print("done! - time elapsed: %.2f seconds" % time.clock())
