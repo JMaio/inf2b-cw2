@@ -125,8 +125,8 @@ dims=%d: cannot go over %d dimensions!
             # ignoring "+ ln P(C)" assuming uniform prior distribution
             log_pps_pca[i, c] = - 0.5 * (v.dot(cov_inv_pca.dot(v.T)) + cov_logdet_pca)
         # give feedback on class calculation (pretty printing included)
-        s = ["calculating classes: # %d",
-             "                     # %d"]
+        s = ["computing class likelihoods: # %d",
+             "                             # %d"]
         print(s[int(bool(c))] % c)
     t_classes_pca = time.clock()
 
