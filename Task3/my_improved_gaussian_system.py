@@ -54,6 +54,10 @@ experiments = [
     (None, 1e-10, 1e-10),
     (None, 0, 0),
 ]
+le = len(experiments)
+e = ((args.e - 1) % le + le) % le
+dims, epsilon, epsilon_pca = experiments[e]
+
 print("running experiment #%2d: dims=%s, ε=%s"
                 % (args.e, str(dims), str(epsilon)))
 (dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims,
