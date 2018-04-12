@@ -41,6 +41,7 @@ time.clock()
 #  - dims=None : specify dimensions to reduce to (max 26)
 #  - epsilon=1e-10 : epsilon to be used in covariance matrices
 #  - epsilon_pca=1e-10 : epsilon to be used (after pca) in covariance matrices
+# define custom experiments for replicating statistics from report
 experiments = [
     (1, 0.01, 0.01),
     (1, 1e-10, 1e-10),
