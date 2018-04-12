@@ -136,4 +136,4 @@ dims=%d: cannot go over %d dimensions!
 
     # Cpreds = np.abs(Xtst_pca).argmax(axis=1).ravel()
 
-    return Cpreds
+    return (dims, Cpreds)
