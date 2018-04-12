@@ -75,7 +75,7 @@ dims=%d: cannot go over %d dimensions!
     max_row_i = np.abs(eig_vals).argmax(axis=1)
     max_col_i = eig_vals[max_row_i, np.arange(eig_vals.shape[0])].argsort().ravel()[:-(dims + 1):-1]
 
-    # set e1, e2 to eigenvectors with 1st and 2nd largest associated eigenvalues
+    # set eig_vecs_pca to eigenvectors with (dims) largest associated eigenvalues
     eig_vecs_pca = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
 
     t_eig = time.clock()
