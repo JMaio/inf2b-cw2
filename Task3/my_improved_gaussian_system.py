@@ -80,13 +80,9 @@ else:
     print("running my_gaussian_classify...")
     (dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims)
 
-print("running experiment #%2d: dims=%s, ε=%s"
-                % (args.e, str(dims), str(epsilon)))
-(dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims,
-                                       epsilon=epsilon, epsilon_pca=epsilon_pca)
 
 # Measure the user time taken, and display it
-print("experiment #%2d done! - time elapsed: %.2f seconds" % (e, time.clock()))
+print("done! - time elapsed: %.2f seconds" % (time.clock()))
 
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
