@@ -56,7 +56,7 @@ experiments = [
     (21, 1e-10, 1e-10),
     (None, 0.02, 0.02),
     (None, 0.01, 0.01),
-    (None, 1e-10, 1e-10),
+    (26, 1e-10, 1e-10),
     (None, 0, 0),
 ]
 le = len(experiments)
