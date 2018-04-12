@@ -64,7 +64,7 @@ print("running experiment #%2d: dims=%s, ε=%s"
                                        epsilon=epsilon, epsilon_pca=epsilon_pca)
 
 # Measure the user time taken, and display it
-print("done! - time elapsed: %.2f seconds" % time.clock())
+print("experiment #%2d done! - time elapsed: %.2f seconds" % (args.e, time.clock()))
 
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
