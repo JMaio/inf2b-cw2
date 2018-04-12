@@ -19,7 +19,7 @@ def my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=None, epsilon=1e-10,
     c_n = Ctrn.max() + 1
 
     if not dims:
-        print("dims undefined: setting to max (dims=%d)" % (c_n))
+        print("dims undefined (or == 0)! setting to max (dims=%d)" % (c_n))
         dims = c_n
     elif dims > c_n:
         print("""
@@ -75,7 +75,7 @@ dims=%d: cannot go over %d dimensions!
     max_row_i = np.abs(eig_vals).argmax(axis=1)
     max_col_i = eig_vals[max_row_i, np.arange(eig_vals.shape[0])].argsort().ravel()[:-(dims + 1):-1]
 
-    # set e1, e2 to eigenvectors with 1st and 2nd largest associated eigenvalues
+    # set eig_vecs_pca to eigenvectors with (dims) largest associated eigenvalues
     eig_vecs_pca = eig_vecs[:, max_row_i[max_col_i], max_col_i].T
 
     t_eig = time.clock()
@@ -125,8 +125,8 @@ dims=%d: cannot go over %d dimensions!
             # ignoring "+ ln P(C)" assuming uniform prior distribution
             log_pps_pca[i, c] = - 0.5 * (v.dot(cov_inv_pca.dot(v.T)) + cov_logdet_pca)
         # give feedback on class calculation (pretty printing included)
-        s = ["calculating classes: # %d",
-             "                     # %d"]
+        s = ["computing class likelihoods: # %d",
+             "                             # %d"]
         print(s[int(bool(c))] % c)
     t_classes_pca = time.clock()
 
@@ -136,4 +136,4 @@ dims=%d: cannot go over %d dimensions!
 
     # Cpreds = np.abs(Xtst_pca).argmax(axis=1).ravel()
 
-    return Cpreds
+    return (dims, Cpreds)
