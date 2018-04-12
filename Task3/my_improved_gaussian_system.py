@@ -60,11 +60,25 @@ experiments = [
     (None, 0, 0),
 ]
 le = len(experiments)
-e = (args.e - 1)
-if e not in range(le):
-    e = 11
-    print("experiment number not valid! running default: #%d" % (e + 1))
-dims, epsilon, epsilon_pca = experiments[e]
+if args.e:
+    e = (args.e - 1)
+    if e not in range(le):
+        e = 11
+        print("experiment number not valid! running default: #%d" % (e + 1))
+    dims, epsilon, epsilon_pca = experiments[e]
+    print("running experiment #%2d: dims=%s, ε=%s"
+        % (args.e, str(dims), str(epsilon)))
+    (dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims,
+                                epsilon=epsilon, epsilon_pca=epsilon_pca)
+elif args.d:
+    dims = args.d
+    print("running my_gaussian_classify:")
+    print("dimensions reduced from %d to %d" (Xtrn.shape[1], dims))
+    (dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims)
+else:
+    dims, epsilon, epsilon_pca = experiments[11]
+    print("running my_gaussian_classify...")
+    (dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims)
 
 print("running experiment #%2d: dims=%s, ε=%s"
                 % (args.e, str(dims), str(epsilon)))
