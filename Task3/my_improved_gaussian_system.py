@@ -66,7 +66,7 @@ if args.e:
         e = 11
         print("experiment number not valid! running default: #%d" % (e + 1))
     dims, epsilon, epsilon_pca = experiments[e]
-    print("running experiment #%2d: dims=%s, ε=%s"
+    print("running experiment #%2d: dims=%s, epsilon=%s"
         % (args.e, str(dims), str(epsilon)))
     (dims, Cpreds) = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst, dims=dims,
                                 epsilon=epsilon, epsilon_pca=epsilon_pca)
