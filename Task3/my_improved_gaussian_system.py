@@ -76,5 +76,5 @@ scipy.io.savemat("cm_improved.mat", {'cm': CM}, oned_as='row')
 
 #YourCode - Display information if any
 N = Xtst.shape[0]
-print("N = %d, Nerrs = %4d, acc = %.2f%%" \
-    % (N, N * (1 - acc), acc*100))
+print("dims = %2d, ε = %.0e, N = %d, Nerrs = %4d, acc = %.2f%%" \
+    % (dims, epsilon, N, N * (1 - acc), acc*100))
