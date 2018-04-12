@@ -7,6 +7,13 @@ import time
 from my_improved_gaussian_classify import *
 from my_confusion import *
 
+# ________________ parse arguments to facilitate experiments ________________ #
+import argparse
+parser = argparse.ArgumentParser(description='run improved variant of my_gaussian_classify.')
+parser.add_argument('-e', default=-2, type=int,
+                    help='select which experiment number to run')
+args = parser.parse_args()
+# ___________________________ begin actual system ___________________________ #
 # Load the data set
 filename = "/afs/inf.ed.ac.uk/group/teaching/inf2b/cwk2/d/s1621503/data.mat";
 # use local data set while not connected to afs
