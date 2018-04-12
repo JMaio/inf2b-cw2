@@ -10,8 +10,10 @@ from my_confusion import *
 # ________________ parse arguments to facilitate experiments ________________ #
 import argparse
 parser = argparse.ArgumentParser(description='run improved variant of my_gaussian_classify.')
-parser.add_argument('-e', default=12, type=int,
+parser.add_argument('-e', default=None, type=int,
                     help='select which experiment number to run')
+parser.add_argument('-d', default=None, type=int,
+                    help='number of dimensions to reduce to')
 args = parser.parse_args()
 # ___________________________ begin actual system ___________________________ #
 # Load the data set
