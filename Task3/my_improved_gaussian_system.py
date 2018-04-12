@@ -37,12 +37,13 @@ time.clock()
 
 ## Using PCA to improve the gaussian classifier
 # Cpreds = my_gaussian_classify(Xtrn, Ctrn, Xtst, epsilon)
-print("running my_improved_gaussian_classify...")
 # my_improved_gaussian_classify has keyword arguments:
 #  - dims=None : specify dimensions to reduce to (max 26)
 #  - epsilon=1e-10 : epsilon to be used in covariance matrices
 #  - epsilon_pca=1e-10 : epsilon to be used (after pca) in covariance matrices
 Cpreds = my_improved_gaussian_classify(Xtrn, Ctrn, Xtst)
+print("running experiment #%2d: dims=%s, ε=%s"
+                % (args.e, str(dims), str(epsilon)))
 
 # Measure the user time taken, and display it
 print("done! - time elapsed: %.2f seconds" % time.clock())
