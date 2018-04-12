@@ -58,7 +58,10 @@ experiments = [
     (None, 0, 0),
 ]
 le = len(experiments)
-e = ((args.e - 1) % le + le) % le
+e = (args.e - 1)
+if e not in range(le):
+    e = 11
+    print("experiment number not valid! running default: #%d" % (e + 1))
 dims, epsilon, epsilon_pca = experiments[e]
 
 print("running experiment #%2d: dims=%s, ε=%s"
@@ -67,7 +70,7 @@ print("running experiment #%2d: dims=%s, ε=%s"
                                        epsilon=epsilon, epsilon_pca=epsilon_pca)
 
 # Measure the user time taken, and display it
-print("experiment #%2d done! - time elapsed: %.2f seconds" % (args.e, time.clock()))
+print("experiment #%2d done! - time elapsed: %.2f seconds" % (e, time.clock()))
 
 # Get a confusion matrix and accuracy
 CM, acc = my_confusion(Ctst, Cpreds)
